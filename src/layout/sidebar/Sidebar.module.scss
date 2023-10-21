@@ -3,8 +3,9 @@
 
 .container {
   background: $white;
-  max-width: 30%;
-  padding: 0 $xlg;
+  max-width: 21vw;
+  min-width: 18vw;
+  padding: 0 $lg;
   overflow-y: scroll;
   max-height: 75vh;
   &_menu {

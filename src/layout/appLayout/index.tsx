@@ -11,7 +11,9 @@ const AppLayout = () => {
       <Navbar />
       <div className={styles.container_inner}>
         <Sidebar />
-        <Outlet />
+        <div className={styles.container_inner_outlet}>
+          <Outlet />
+        </div>
       </div>
       <Footer />
     </div>

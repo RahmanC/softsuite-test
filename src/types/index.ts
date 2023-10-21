@@ -40,3 +40,15 @@ export interface ButtonProps {
   icon?: React.ReactNode;
   onClick?: () => void;
 }
+
+export interface ListProps {
+  icon: React.ReactNode;
+  text: string;
+  link?: string;
+  onClickModal?: any;
+}
+
+export interface PaginationProps {
+  pageCount: number;
+  onPageChange: (selectedItem: { selected: number }) => void;
+}

@@ -1,0 +1,53 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 0.25rem;
+  margin-bottom: 10px;
+}
+
+.paginationBtn {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  color: $primary;
+  margin-top: 10px;
+  margin-right: $base;
+}
+
+.paginationBtn a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background-color: #e2e2e2;
+  color: #abb3c5;
+  font-size: $sm;
+  font-weight: 500;
+  margin: 3px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: $gilroy;
+  &:hover {
+    color: $primary;
+  }
+}
+
+.paginationActive {
+  color: $primary;
+}
+.paginationActive a {
+  color: $white;
+  background-color: $primary;
+  &:hover {
+    color: $white;
+  }
+}
+
+.paginationDisabled {
+  display: none;
+}
