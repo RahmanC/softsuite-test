@@ -2,31 +2,30 @@
 @import "scss/_sass-variables.scss";
 
 .container {
-  background-color: $bgColor;
-  border-radius: 4px;
-  padding: 0.5rem;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: $xxlg;
-  cursor: pointer;
+  margin-right: $base;
 
-  &_inner {
+  &_account {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: $lg;
+    align-items: center;
+    gap: $xlg;
 
     &_texts {
       display: flex;
       flex-direction: column;
-      gap: 0;
+      align-items: flex-start;
+      font-size: $lg;
       color: $primary;
-      font-size: $md;
+      font-weight: 600;
 
-      &_name {
+      &_title {
         font-size: $base;
-        font-weight: 600;
+        color: $fontColor;
+        font-weight: 400;
       }
     }
   }

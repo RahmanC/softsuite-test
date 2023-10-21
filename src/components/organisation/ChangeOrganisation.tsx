@@ -9,10 +9,12 @@ const ChangeOrganisation: React.FC = () => {
       <div className={styles.container_inner}>
         <Home />
         <div className={styles.container_inner_texts}>
-          <p className={styles.container_inner_texts_label}>
+          <span className={styles.container_inner_texts_label}>
             Change Organisation
-          </p>
-          <p className={styles.container_inner_texts_name}>PaperSoft Limited</p>
+          </span>
+          <span className={styles.container_inner_texts_name}>
+            PaperSoft Limited
+          </span>
         </div>
       </div>
       <ArrowDown />
