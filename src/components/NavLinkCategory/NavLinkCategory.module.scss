@@ -1,0 +1,43 @@
+@import "scss/_media-query-mixins.scss";
+@import "scss/_sass-variables.scss";
+
+.visible {
+  position: relative;
+  background-color: $secondary;
+  color: $white;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.nav_link_category {
+  &_sub {
+    margin-bottom: $xs;
+  }
+
+  &_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $xs;
+    padding: $xs $base;
+    font-size: $md;
+    cursor: pointer;
+    &_left {
+      display: flex;
+      align-items: center;
+      gap: $xlg;
+    }
+
+    &.active {
+      position: relative;
+      background-color: $secondary;
+      color: $white;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    &_heading {
+      margin: 0;
+    }
+  }
+}

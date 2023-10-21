@@ -2,13 +2,12 @@
 @import "scss/_sass-variables.scss";
 
 .container {
-  background-color: $bgColor;
   border-radius: 4px;
   padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: $xxlg;
+  gap: $xlg;
   cursor: pointer;
 
   &_inner {

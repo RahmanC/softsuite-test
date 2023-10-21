@@ -3,5 +3,15 @@
 
 .container {
   background: $white;
-  width: 302px;
+  max-width: 30%;
+  padding: 0 $xlg;
+  overflow-y: scroll;
+  max-height: 75vh;
+  &_menu {
+    padding: $xlg 0;
+    &_divider {
+      border: 0.4px solid #96a0b7;
+      margin: 40px 0;
+    }
+  }
 }

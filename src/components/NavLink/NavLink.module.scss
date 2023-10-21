@@ -1,0 +1,33 @@
+@import "scss/_media-query-mixins.scss";
+@import "scss/_sass-variables.scss";
+
+.side_nav_link {
+  display: flex;
+  align-items: center;
+  gap: $xlg;
+  padding: $xs $base;
+  margin-bottom: $xs;
+  text-decoration: none;
+  color: $fontColor;
+  font-size: $md;
+
+  &.active {
+    position: relative;
+    background-color: $lightGreen;
+    color: $primary;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+
+  &:hover {
+    font-weight: 500;
+    position: relative;
+    background-color: $lightGreen;
+    color: $primary;
+    border-radius: 6px;
+  }
+
+  &_text {
+    margin: 0;
+  }
+}
