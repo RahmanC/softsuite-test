@@ -1,0 +1,26 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $base;
+  font-family: $gilroy;
+
+  &_text {
+    color: $primary;
+    font-size: $base;
+    font-weight: bolder;
+  }
+  &_select {
+    background-color: #e2e2e2;
+    padding: 0.3rem $sm;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    color: $primary;
+    font-size: $sm;
+    font-family: $gilroy;
+  }
+}

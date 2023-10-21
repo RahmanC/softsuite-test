@@ -1,3 +1,5 @@
+import { Column } from "react-table";
+
 export interface SearchProps {
   placeholder: string;
   customClass?: string;
@@ -51,4 +53,20 @@ export interface ListProps {
 export interface PaginationProps {
   pageCount: number;
   onPageChange: (selectedItem: { selected: number }) => void;
+}
+
+export interface PageSizeProps {
+  totalItems: number;
+  itemsPerPage: number;
+  onPageSizeChange: (newSize: number) => void;
+}
+
+export interface TableDataProps {
+  columnData: Array<Column<any>>;
+  rowData: Array<{ [key: string]: any }>;
+  loading?: boolean;
+  error?: boolean;
+  pageSize?: number;
+  list?: any;
+  customText?: string;
 }

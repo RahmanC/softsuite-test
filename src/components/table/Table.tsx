@@ -1,30 +1,17 @@
 import React, { useMemo, useState } from "react";
-import { useSortBy, useTable, useGlobalFilter, Column } from "react-table";
+import { useSortBy, useTable, useGlobalFilter } from "react-table";
 
 import styles from "./Table.module.scss";
 import { ReactComponent as Sort } from "assets/svg/sort.svg";
 import MoreActions from "components/moreAction/MoreAction";
 import Pagination from "components/pagination/Pagination";
-
-type ColumnData = Array<Column<any>>;
-type RowData = Array<{ [key: string]: any }>;
-
-interface TableDataProps {
-  columnData: ColumnData;
-  rowData: RowData;
-  loading?: boolean;
-  error?: boolean;
-  pageSize?: number;
-  list?: any;
-  customText?: string;
-}
+import PageSize from "components/pageSize/PageSize";
+import { TableDataProps } from "types";
 
 const Table = ({
   columnData,
   rowData,
   loading,
-  error,
-  pageSize,
   list,
   customText,
 }: TableDataProps) => {
@@ -45,12 +32,17 @@ const Table = ({
 
   // pagination
   const [pageNumber, setPageNumber] = useState(0);
-  const size = pageSize || 5;
-  const pagesVisited = pageNumber * size;
-  const pageCount = Math.ceil(rows?.length / size);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(5);
+  const pagesVisited = pageNumber * itemsPerPage;
+  const pageCount = Math.ceil(rows?.length / itemsPerPage);
 
   const changePage = ({ selected }: { selected: number }) => {
     setPageNumber(selected);
+  };
+
+  const handlePageSizeChange = (newSize: number) => {
+    setItemsPerPage(newSize);
+    setPageNumber(0);
   };
 
   return (
@@ -85,41 +77,50 @@ const Table = ({
               <td>No record</td>
             </tr>
           ) : (
-            rows?.slice(pagesVisited, pagesVisited + size)?.map((row: any) => {
-              prepareRow(row);
-              return (
-                <tr
-                  {...row?.getRowProps()}
-                  className={styles.container_table_row}
-                >
-                  {row?.cells?.map((cell: any) => {
-                    return (
-                      <td
-                        {...cell?.getCellProps()}
-                        className={styles.container_table_row_text}
-                      >
-                        {cell?.render("Cell")}
+            rows
+              ?.slice(pagesVisited, pagesVisited + itemsPerPage)
+              ?.map((row: any) => {
+                prepareRow(row);
+                return (
+                  <tr
+                    {...row?.getRowProps()}
+                    className={styles.container_table_row}
+                  >
+                    {row?.cells?.map((cell: any) => {
+                      return (
+                        <td
+                          {...cell?.getCellProps()}
+                          className={styles.container_table_row_text}
+                        >
+                          {cell?.render("Cell")}
+                        </td>
+                      );
+                    })}
+                    {list && (
+                      <td className={styles.container_table_row_icon}>
+                        <MoreActions
+                          data={row?.original}
+                          list={list}
+                          customText={customText}
+                        />
                       </td>
-                    );
-                  })}
-                  {list && (
-                    <td className={styles.container_table_row_icon}>
-                      <MoreActions
-                        data={row?.original}
-                        list={list}
-                        customText={customText}
-                      />
-                    </td>
-                  )}
-                </tr>
-              );
-            })
+                    )}
+                  </tr>
+                );
+              })
           )}
         </tbody>
       </table>
-      {rows?.length > size && (
-        <Pagination pageCount={pageCount} onPageChange={changePage} />
-      )}
+      <div className={styles.container_paginate}>
+        <PageSize
+          totalItems={rows?.length}
+          itemsPerPage={itemsPerPage}
+          onPageSizeChange={handlePageSizeChange}
+        />
+        {rows?.length > itemsPerPage && (
+          <Pagination pageCount={pageCount} onPageChange={changePage} />
+        )}
+      </div>
     </div>
   );
 };
