@@ -1,2 +1,12 @@
 @import "scss/_media-query-mixins";
 @import "scss/_sass-variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  &_inner {
+    display: flex;
+    flex: 1;
+  }
+}
