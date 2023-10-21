@@ -1,0 +1,13 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  padding: $base $xxlg;
+  flex: 1;
+  &_inner {
+    background-color: $white;
+    border-radius: 6px;
+    padding: $lg;
+    margin-top: $md;
+  }
+}

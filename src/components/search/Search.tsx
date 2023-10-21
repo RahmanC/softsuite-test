@@ -3,7 +3,7 @@ import { ReactComponent as SearchIcon } from "assets/svg/search.svg";
 import style from "./Search.module.scss";
 import { SearchProps } from "types";
 
-const Search = ({ placeholder, customClass }: SearchProps) => {
+const Search = ({ placeholder, customClass, customInput }: SearchProps) => {
   const [searchInput, setSearchInput] = useState("");
   const handleChange = (event: {
     target: { value: React.SetStateAction<string> };
@@ -29,7 +29,7 @@ const Search = ({ placeholder, customClass }: SearchProps) => {
         value={searchInput}
         onChange={handleChange}
         placeholder={placeholder}
-        className={style.app_search_input}
+        className={`${style.app_search_input} ${customInput} `}
       />
     </form>
   );

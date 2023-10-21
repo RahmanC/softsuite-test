@@ -1,0 +1,16 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  background: $secondary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: $base;
+  font-family: $gilroy;
+  padding: $sm $base;
+  cursor: pointer;
+}

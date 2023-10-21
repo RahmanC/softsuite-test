@@ -7,7 +7,7 @@ import { ReactComponent as Arrow } from "assets/svg/arrow-right.svg";
 const Breadcrumb = ({ paths }: BreadcrumbProps) => {
   return (
     <div className={styles.container}>
-      <ol className={styles.container_breadcrumb}>
+      <div className={styles.container_breadcrumb}>
         {paths.map((path, index) => {
           const activeItem = index !== paths.length - 1;
           return (
@@ -35,7 +35,7 @@ const Breadcrumb = ({ paths }: BreadcrumbProps) => {
             </li>
           );
         })}
-      </ol>
+      </div>
     </div>
   );
 };
