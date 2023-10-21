@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "utils/gilroy.scss";
+
+// colors
+$primary: #2d416f;
+$secondary: #4baa79;
+$white: #ffffff;
+$fontColor: #818da9;
+$bgColor: #f6f7f9;
+$errorColor: #e05453;
+$lightRed: #fdf6f6;
+$boxGray: #e1e1e1;
+$boxStroke: #dadada;
+// font
+$font: "Poppins", sans-serif;
+$gilroy: "Gilroy", sans-serif;
+// font sizes
+$xs: 0.625rem;
+$sm: 0.75rem;
+$md: 0.875rem;
+$base: 1rem;
+$lg: 1.25rem;
+$xlg: 1.5rem;
+$xxlg: 2.5rem;

@@ -1,0 +1,34 @@
+@import "scss/_media-query-mixins.scss";
+@import "scss/_sass-variables.scss";
+
+.app_search {
+  position: relative;
+  width: 22.125rem;
+  border: 1px solid $boxGray;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: $white;
+  font-size: $base;
+  &_input {
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    padding: $base;
+    padding-right: 56px;
+    width: 100%;
+    background-color: transparent;
+    color: #57678c;
+    text-transform: capitalize;
+    font-family: $gilroy;
+  }
+  &_icon {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $secondary;
+  }
+}

@@ -1,0 +1,18 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  background-color: $bgColor;
+  border-radius: 4px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: $gilroy;
+
+  &_inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
