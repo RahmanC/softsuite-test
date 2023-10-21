@@ -4,6 +4,7 @@ import CustomSwitcher from "components/customSwitch/CustomSwitcher";
 import { ReactComponent as Switch } from "assets/svg/switch.svg";
 import { ReactComponent as Dashboard } from "assets/svg/home.svg";
 import { ReactComponent as Payroll } from "assets/svg/payroll.svg";
+import { ReactComponent as ActivePayroll } from "assets/svg/payroll-white.svg";
 import { ReactComponent as ActiveElement } from "assets/svg/gear-white.svg";
 import { ReactComponent as Element } from "assets/svg/gear.svg";
 import { ReactComponent as Employee } from "assets/svg/user-group.svg";
@@ -25,7 +26,7 @@ const Sidebar = () => {
         <NavLink icon={<Dashboard />} text="Dashboard" />
         <NavLinkCategory
           icon={<Payroll />}
-          iconActive={<Payroll />}
+          iconActive={<ActivePayroll />}
           heading="Payroll Activities"
           options={links}
         />

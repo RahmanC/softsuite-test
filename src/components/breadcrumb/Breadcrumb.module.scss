@@ -1,0 +1,26 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  &_breadcrumb {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: $base;
+    &_item {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: $base;
+      &_link {
+        text-decoration: none;
+        color: $fontColor;
+        font-weight: 600;
+        font-size: $base;
+      }
+      &_lastLink {
+        color: $primary;
+      }
+    }
+  }
+}

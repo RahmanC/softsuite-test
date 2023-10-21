@@ -21,3 +21,7 @@ export interface NavLinkCatProps {
   iconActive?: any;
   heading: string;
 }
+
+export interface BreadcrumbProps {
+  paths: { label: string; link?: string }[];
+}
