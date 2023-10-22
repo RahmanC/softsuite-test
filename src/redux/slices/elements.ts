@@ -1,8 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getElements } from "axiosConfig/services";
+import {
+  getElementById,
+  getElementLinks,
+  getElements,
+} from "axiosConfig/services";
 
 const initialState = {
   elements: [],
+  singleElement: {},
+  elementLinks: [],
   isLoading: false,
   error: false,
 };
@@ -17,6 +23,12 @@ const slice = createSlice({
     },
     updateElements(state, action) {
       state.elements = action.payload.elements;
+    },
+    updateSingleElement(state, action) {
+      state.singleElement = action.payload.singleElement;
+    },
+    updateElementLinks(state, action) {
+      state.elementLinks = action.payload.elementLinks;
     },
   },
 });
@@ -34,10 +46,61 @@ export function FetchElements() {
     );
 
     const response = await getElements();
-    console.log("respo", response);
     dispatch(
       slice.actions.updateElements({
         elements: response.data.content,
+      })
+    );
+
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: false,
+        error: false,
+      })
+    );
+  };
+}
+
+// fetch element by id
+export function FetchElementById(id: string) {
+  return async (dispatch: any) => {
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: true,
+        error: false,
+      })
+    );
+
+    const response = await getElementById(id);
+    dispatch(
+      slice.actions.updateSingleElement({
+        singleElement: response.data,
+      })
+    );
+
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: false,
+        error: false,
+      })
+    );
+  };
+}
+
+// fetch element links
+export function FetchElementLinks(id: string) {
+  return async (dispatch: any) => {
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: true,
+        error: false,
+      })
+    );
+
+    const response = await getElementLinks(id);
+    dispatch(
+      slice.actions.updateElementLinks({
+        elementLinks: response.data.content,
       })
     );
 

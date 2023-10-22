@@ -2,7 +2,7 @@ import { ModalProps } from "types";
 import styles from "./Modal.module.scss";
 import { useEffect } from "react";
 
-const Modal = ({ children, onClose }: ModalProps) => {
+const Modal = ({ children, onClose, customClass, customInner }: ModalProps) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -26,8 +26,10 @@ const Modal = ({ children, onClose }: ModalProps) => {
   }, [onClose]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.container_inner}>{children}</div>
+    <div className={customClass ? customClass : styles.container}>
+      <div className={customInner ? customInner : styles.container_inner}>
+        {children}
+      </div>
     </div>
   );
 };

@@ -4,16 +4,16 @@ import { DetailsProps } from "types";
 
 const Details = ({
   name,
-  classification,
-  category,
-  payrun,
+  classificationId,
+  categoryId,
+  payRunId,
   description,
-  reporting,
-  startDate,
-  endDate,
-  type,
-  frequency,
-  months,
+  reportingName,
+  effectiveStartDate,
+  effectiveEndDate,
+  processingType,
+  payFrequency,
+  selectedMonths,
   prorate,
   status,
 }: DetailsProps) => {
@@ -28,17 +28,17 @@ const Details = ({
           </div>
           <div className={styles.container_box_inner_data}>
             <span>Element Classification</span>
-            <span>{classification ?? "-"}</span>
+            <span>{classificationId ?? "-"}</span>
           </div>
         </div>
         <div className={styles.container_box_inner}>
           <div className={styles.container_box_inner_data}>
             <span>Element Category</span>
-            <span>{category ?? "-"}</span>
+            <span>{categoryId ?? "-"}</span>
           </div>
           <div className={styles.container_box_inner_data}>
             <span>Payrun</span>
-            <span>{payrun ?? "-"}</span>
+            <span>{payRunId ?? "-"}</span>
           </div>
         </div>
         <div className={styles.container_box_inner}>
@@ -48,34 +48,34 @@ const Details = ({
           </div>
           <div className={styles.container_box_inner_data}>
             <span>reporting name</span>
-            <span>{reporting ?? "-"}</span>
+            <span>{reportingName ?? "-"}</span>
           </div>
         </div>
         <div className={styles.container_box_inner}>
           <div className={styles.container_box_inner_data}>
             <span>effective start date</span>
-            <span>{startDate ?? "-"}</span>
+            <span>{effectiveStartDate ?? "-"}</span>
           </div>
           <div className={styles.container_box_inner_data}>
             <span>effective end date</span>
-            <span>{endDate ?? "-"}</span>
+            <span>{effectiveEndDate ?? "-"}</span>
           </div>
         </div>
         <div className={styles.container_box_inner}>
           <div className={styles.container_box_inner_data}>
             <span>processing type</span>
-            <span>{type ?? "-"}</span>
+            <span>{processingType ?? "-"}</span>
           </div>
           <div className={styles.container_box_inner_data}>
             <span>pay frequency</span>
-            <span>{frequency ?? "-"}</span>
+            <span>{payFrequency ?? "-"}</span>
           </div>
         </div>
         <div className={styles.container_box_inner}>
           <div className={styles.container_box_inner_data}>
             <span>pay months</span>
             <span>
-              {months?.map((m) => {
+              {selectedMonths?.map((m) => {
                 return <span>{m}</span>;
               }) ?? "-"}
             </span>
@@ -89,7 +89,7 @@ const Details = ({
         <div className={styles.container_box_inner}>
           <div className={styles.container_box_inner_data}>
             <span>status</span>
-            <span>{status ?? "-"}</span>
+            <span>{status ? "Active" : "Inactive"}</span>
           </div>
         </div>
       </div>

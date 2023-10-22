@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Breadcrumb from "components/breadcrumb/Breadcrumb";
 import styles from "./Elements.module.scss";
 import PageHeader from "components/pageHeader/PageHeader";
@@ -8,6 +8,10 @@ import Details from "components/Details/Details";
 import ConditionalRender from "components/ConditionalRender";
 import Modal from "components/modal/Modal";
 import { GoBack } from "components/GoBack";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchElementById, FetchElementLinks } from "redux/slices/elements";
+import { useStorage } from "hooks/useStorage";
+import ElementLinkDetails from "screens/elementLinkDetails";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
@@ -17,14 +21,27 @@ const paths = [
 ];
 
 const ElementDetails = () => {
+  const { getSessionStorage } = useStorage("__softSuite");
+
+  const dispatch: any = useDispatch();
+  const { singleElement, elementLinks } = useSelector(
+    (state: any) => state.elements
+  );
+
   const [showModal, setShowModal] = useState(false);
+  const [showDetails, setShowDetails] = useState(null);
+
+  useLayoutEffect(() => {
+    dispatch(FetchElementById(getSessionStorage.id));
+    dispatch(FetchElementLinks(getSessionStorage.id));
+  }, []);
 
   return (
     <div className={styles.container}>
       <Breadcrumb paths={paths} />
       <div className={styles.container_inner}>
         <GoBack />
-        <Details {...details} />
+        <Details {...singleElement} />
         <PageHeader
           header="Element Links"
           placeholder="Search for element link"
@@ -34,7 +51,10 @@ const ElementDetails = () => {
         />
         <Table
           columnData={ELEMENT_DETAILS_COLUMN}
-          rowData={data}
+          rowData={elementLinks}
+          handleDetails={(data: React.SetStateAction<null>) =>
+            setShowDetails(data)
+          }
           actions
           noRecord="There are no element links to display"
         />
@@ -44,29 +64,22 @@ const ElementDetails = () => {
             <p>test</p>
           </Modal>
         </ConditionalRender>
+
+        <ConditionalRender isVisible={showDetails}>
+          <Modal
+            onClose={() => setShowDetails(null)}
+            customClass={styles.sideModal}
+            customInner={styles.sideModal_inner}
+          >
+            <ElementLinkDetails
+              closeModal={() => setShowDetails(null)}
+              data={showDetails}
+            />
+          </Modal>
+        </ConditionalRender>
       </div>
     </div>
   );
 };
 
 export default ElementDetails;
-
-const data = [
-  {
-    name: "allowance",
-    sub: "Deduction",
-    department: "pre-tax",
-    category: "inactive",
-    amount: "10,000:00",
-    details: "Samson ",
-  },
-];
-
-const details = {
-  name: "Allowance",
-  classification: "dedeuction",
-  category: "cat",
-  payrun: "dhhd",
-  description: "",
-  months: ["january, February, March, Septemper"],
-};

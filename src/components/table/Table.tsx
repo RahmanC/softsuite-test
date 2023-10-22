@@ -18,6 +18,7 @@ const Table = ({
   actions,
   customText,
   noRecord,
+  handleDetails,
 }: TableDataProps) => {
   const columns = useMemo(() => columnData, [columnData]);
   const data = useMemo(() => rowData, [rowData]);
@@ -65,7 +66,11 @@ const Table = ({
                   </div>
                 </th>
               ))}
-              {(list || actions) && (
+
+              {actions && (
+                <th className={styles.container_table_head_th}>Details</th>
+              )}
+              {list && (
                 <th className={styles.container_table_head_th}>
                   {list ? "Action" : "Actions"}
                 </th>
@@ -106,6 +111,16 @@ const Table = ({
                         </td>
                       );
                     })}
+                    {actions && (
+                      <td className={styles.container_table_row_icon}>
+                        <span
+                          className={styles.more}
+                          onClick={() => handleDetails(row?.original)}
+                        >
+                          View details
+                        </span>
+                      </td>
+                    )}
                     {list && (
                       <td className={styles.container_table_row_icon}>
                         <MoreActions

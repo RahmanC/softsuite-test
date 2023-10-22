@@ -1,0 +1,50 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $xlg;
+  &_header {
+    color: $primary;
+    font-size: 1.188rem;
+    font-weight: 600;
+  }
+  &_box {
+    font-family: $gilroy;
+    border: 1px solid $border;
+    &_inner {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid $border;
+      &:nth-child(1) {
+        border-top: none;
+      }
+      &_data {
+        display: flex;
+        flex-direction: column;
+        padding: $xs $lg;
+        &:nth-child(1) {
+          border-right: 1px solid $border;
+        }
+        span {
+          font-size: $sm;
+          color: #7e7e7e;
+          text-transform: uppercase;
+          &:nth-child(2) {
+            color: $primary;
+            font-size: $md;
+            font-weight: bold;
+            text-transform: capitalize;
+          }
+          span {
+            color: $primary;
+            font-size: $md;
+            font-weight: bold;
+            text-transform: capitalize;
+          }
+        }
+      }
+    }
+  }
+}

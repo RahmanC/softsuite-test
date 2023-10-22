@@ -75,31 +75,53 @@ export interface TableDataProps {
   actions?: any;
   customText?: string;
   noRecord: string;
+  handleDetails?: any;
 }
 
 export interface DetailsProps {
   name?: string;
-  classification?: string;
-  category?: string;
-  payrun?: string;
+  classificationId?: string;
+  categoryId?: string;
+  payRunId?: string;
   description?: string;
-  reporting?: string;
-  startDate?: string;
-  endDate?: string;
-  type?: string;
-  frequency?: string;
-  months?: string[];
+  reportingName?: string;
+  effectiveStartDate?: string;
+  effectiveEndDate?: string;
+  processingType?: string;
+  payFrequency?: string;
+  selectedMonths?: string[];
   prorate?: string;
   status?: string;
+}
+
+export interface LinkDetailsProps {
+  name?: string;
+  suborganizationId?: string;
+  amountType?: string;
+  departmentId?: string;
+  employeeTypeValueId?: string;
+  locationId?: string;
+  effectiveStartDate?: string;
+  effectiveEndDate?: string;
+  employeeCategoryValueId?: string;
+  createdAt?: string;
+  housing?: string;
+  grade?: string;
+  status?: string;
+  gradeStep?: string;
+  pension?: string;
+  amount?: string;
 }
 
 export interface ModalProps {
   children: React.ReactNode;
   onClose: () => void;
+  customClass?: string;
+  customInner?: string;
 }
 
 export interface ConditionalProps {
-  isVisible: boolean;
+  isVisible: any;
   children: any;
 }
 
