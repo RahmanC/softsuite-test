@@ -7,12 +7,14 @@ import MoreActions from "components/moreAction/MoreAction";
 import Pagination from "components/pagination/Pagination";
 import PageSize from "components/pageSize/PageSize";
 import { TableDataProps } from "types";
+import Action from "components/Action/Action";
 
 const Table = ({
   columnData,
   rowData,
   loading,
   list,
+  actions,
   customText,
 }: TableDataProps) => {
   const columns = useMemo(() => columnData, [columnData]);
@@ -61,8 +63,10 @@ const Table = ({
                   </div>
                 </th>
               ))}
-              {list && (
-                <th className={styles.container_table_head_th}>Action</th>
+              {(list || actions) && (
+                <th className={styles.container_table_head_th}>
+                  {list ? "Action" : "Actions"}
+                </th>
               )}
             </tr>
           ))}
@@ -103,6 +107,11 @@ const Table = ({
                           list={list}
                           customText={customText}
                         />
+                      </td>
+                    )}
+                    {actions && (
+                      <td className={styles.container_table_row_icon}>
+                        <Action data={row?.original} customText={customText} />
                       </td>
                     )}
                   </tr>

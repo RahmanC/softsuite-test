@@ -1,0 +1,27 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &_inner {
+    width: auto;
+    height: auto;
+    max-height: 80vh;
+    background-color: $white;
+    border-radius: 4px;
+    padding: 1rem;
+    position: relative;
+  }
+}

@@ -41,3 +41,36 @@ export const ELEMENT_COLUMN = [
     accessor: "modified",
   },
 ];
+
+export const ELEMENT_DETAILS_COLUMN = [
+  {
+    header: "Name",
+    accessor: "name",
+  },
+  {
+    header: "Sub-Organization",
+    accessor: "sub",
+  },
+  {
+    header: "Department",
+    accessor: "department",
+  },
+  {
+    header: "Employee Category",
+    accessor: "category",
+  },
+  {
+    header: "Amount",
+    accessor: "amount",
+    Cell: ({ value }: Value) => {
+      return <p>NGN {value}</p>;
+    },
+  },
+  {
+    header: "Details",
+    accessor: "details",
+    Cell: ({ value }: Value) => {
+      return <p className={styles.more}>View details</p>;
+    },
+  },
+];

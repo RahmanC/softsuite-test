@@ -1,0 +1,42 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  position: relative;
+
+  &_icons {
+    cursor: pointer;
+    display: flex;
+    gap: $xs;
+    justify-content: center;
+    align-items: center;
+  }
+  &_modal {
+    z-index: 50;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    position: absolute;
+    top: 2.5rem;
+    right: 0;
+    width: max-content;
+    background-color: $white;
+    border-radius: 4px;
+    overflow: hidden;
+
+    &_inner {
+      display: flex;
+      align-items: center;
+      gap: $xs;
+      padding: 0.3rem $xs;
+      cursor: pointer;
+      color: $primary;
+      font-family: $gilroy;
+      &:hover {
+        background-color: $lightGreen;
+      }
+
+      &_text {
+        font-size: $sm;
+      }
+    }
+  }
+}

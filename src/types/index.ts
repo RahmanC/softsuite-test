@@ -68,6 +68,7 @@ export interface TableDataProps {
   error?: boolean;
   pageSize?: number;
   list?: any;
+  actions?: any;
   customText?: string;
 }
 
@@ -85,4 +86,14 @@ export interface DetailsProps {
   months?: string[];
   prorate?: string;
   status?: string;
+}
+
+export interface ModalProps {
+  children: React.ReactNode;
+  onClose: () => void;
+}
+
+export interface ConditionalProps {
+  isVisible: boolean;
+  children: any;
 }
