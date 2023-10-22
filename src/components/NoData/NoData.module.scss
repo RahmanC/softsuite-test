@@ -1,0 +1,17 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: $base;
+  &_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $sm;
+    margin-top: $base;
+  }
+}

@@ -4,38 +4,16 @@ import styles from "./Elements.module.scss";
 import PageHeader from "components/pageHeader/PageHeader";
 import Table from "components/table/Table";
 import { ELEMENT_DETAILS_COLUMN } from "components/table/TableColumns";
-import { ListProps } from "types";
-import { ReactComponent as View } from "assets/svg/eye.svg";
-import { ReactComponent as Edit } from "assets/svg/pen.svg";
-import { ReactComponent as Delete } from "assets/svg/bin.svg";
-import { ReactComponent as Back } from "assets/svg/back.svg";
 import Details from "components/Details/Details";
 import ConditionalRender from "components/ConditionalRender";
 import Modal from "components/modal/Modal";
+import { GoBack } from "components/GoBack";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
   { label: "Element Setup" },
   { label: "Elements", link: "/elements" },
   { label: "Element Links" },
-];
-
-const list: ListProps[] = [
-  {
-    icon: <View />,
-    text: "View Element Links",
-    link: "/element",
-  },
-  {
-    icon: <Edit />,
-    text: "Edit Element",
-    link: "/element",
-  },
-  {
-    icon: <Delete />,
-    text: "Delete Element",
-    link: "/element",
-  },
 ];
 
 const ElementDetails = () => {
@@ -45,7 +23,7 @@ const ElementDetails = () => {
     <div className={styles.container}>
       <Breadcrumb paths={paths} />
       <div className={styles.container_inner}>
-        <Back />
+        <GoBack />
         <Details {...details} />
         <PageHeader
           header="Element Links"
@@ -54,7 +32,12 @@ const ElementDetails = () => {
           buttonLabel="Create Element Link"
           onClick={() => setShowModal(true)}
         />
-        <Table columnData={ELEMENT_DETAILS_COLUMN} rowData={data} actions />
+        <Table
+          columnData={ELEMENT_DETAILS_COLUMN}
+          rowData={[]}
+          actions
+          noRecord="There are no element links to display"
+        />
 
         <ConditionalRender isVisible={showModal}>
           <Modal onClose={() => setShowModal(false)}>

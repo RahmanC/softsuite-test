@@ -8,6 +8,7 @@ import Pagination from "components/pagination/Pagination";
 import PageSize from "components/pageSize/PageSize";
 import { TableDataProps } from "types";
 import Action from "components/Action/Action";
+import NoData from "components/NoData/NoData";
 
 const Table = ({
   columnData,
@@ -16,6 +17,7 @@ const Table = ({
   list,
   actions,
   customText,
+  noRecord,
 }: TableDataProps) => {
   const columns = useMemo(() => columnData, [columnData]);
   const data = useMemo(() => rowData, [rowData]);
@@ -74,11 +76,15 @@ const Table = ({
         <tbody {...getTableBodyProps()}>
           {loading ? (
             <tr>
-              <div>Loading...</div>
+              <td colSpan={columns.length}>
+                <span>Loading...</span>
+              </td>
             </tr>
           ) : rows?.length < 1 ? (
             <tr>
-              <td>No record</td>
+              <td colSpan={columns.length}>
+                <NoData noRecord={noRecord} />
+              </td>
             </tr>
           ) : (
             rows

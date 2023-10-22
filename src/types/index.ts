@@ -70,6 +70,7 @@ export interface TableDataProps {
   list?: any;
   actions?: any;
   customText?: string;
+  noRecord: string;
 }
 
 export interface DetailsProps {
@@ -96,4 +97,8 @@ export interface ModalProps {
 export interface ConditionalProps {
   isVisible: boolean;
   children: any;
+}
+
+export interface NoRecord {
+  noRecord: string;
 }

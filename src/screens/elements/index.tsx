@@ -44,7 +44,12 @@ const Elements = () => {
           filter
           buttonLabel="Create Element"
         />
-        <Table columnData={ELEMENT_COLUMN} rowData={data} list={list} />
+        <Table
+          columnData={ELEMENT_COLUMN}
+          rowData={data}
+          list={list}
+          noRecord="There are no elements to display"
+        />
       </div>
     </div>
   );
