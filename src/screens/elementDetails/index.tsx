@@ -34,7 +34,7 @@ const ElementDetails = () => {
         />
         <Table
           columnData={ELEMENT_DETAILS_COLUMN}
-          rowData={[]}
+          rowData={data}
           actions
           noRecord="There are no element links to display"
         />

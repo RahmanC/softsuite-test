@@ -1,0 +1,21 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: $gilroy;
+  color: $fontColor;
+  &_label {
+    font-size: $md;
+    text-transform: capitalize;
+  }
+  &_input {
+    color: $fontColor;
+    font-family: $gilroy;
+    padding: $base;
+    font-size: $base;
+    border: 1px solid #e5e5e5;
+  }
+}

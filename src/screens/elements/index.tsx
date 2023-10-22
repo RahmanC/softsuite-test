@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Breadcrumb from "components/breadcrumb/Breadcrumb";
 import styles from "./Elements.module.scss";
 import PageHeader from "components/pageHeader/PageHeader";
@@ -8,6 +8,9 @@ import { ListProps } from "types";
 import { ReactComponent as View } from "assets/svg/eye.svg";
 import { ReactComponent as Edit } from "assets/svg/pen.svg";
 import { ReactComponent as Delete } from "assets/svg/bin.svg";
+import ConditionalRender from "components/ConditionalRender";
+import Modal from "components/modal/Modal";
+import CreateElement from "components/forms/CreateElement";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
@@ -34,6 +37,8 @@ const list: ListProps[] = [
 ];
 
 const Elements = () => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <div className={styles.container}>
       <Breadcrumb paths={paths} />
@@ -43,6 +48,7 @@ const Elements = () => {
           placeholder="Search for element"
           filter
           buttonLabel="Create Element"
+          onClick={() => setShowModal(true)}
         />
         <Table
           columnData={ELEMENT_COLUMN}
@@ -50,6 +56,11 @@ const Elements = () => {
           list={list}
           noRecord="There are no elements to display"
         />
+        <ConditionalRender isVisible={showModal}>
+          <Modal onClose={() => setShowModal(false)}>
+            <CreateElement />
+          </Modal>
+        </ConditionalRender>
       </div>
     </div>
   );

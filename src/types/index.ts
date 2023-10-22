@@ -1,3 +1,4 @@
+import { Control, FieldValues } from "react-hook-form";
 import { Column } from "react-table";
 
 export interface SearchProps {
@@ -101,4 +102,14 @@ export interface ConditionalProps {
 
 export interface NoRecord {
   noRecord: string;
+}
+
+export interface InputProps<T extends FieldValues> {
+  name: any;
+  control: Control<T>;
+  label: string;
+  type: "text" | "email" | "password" | "select";
+  options?: string[];
+  multiple?: boolean;
+  placeholder?: string;
 }
