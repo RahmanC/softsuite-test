@@ -6,6 +6,10 @@
   flex-direction: column;
   width: 50vw;
 
+  &_step {
+    min-width: 100%;
+  }
+
   &_header {
     color: $primary;
     font-size: $lg;
@@ -14,10 +18,17 @@
   &_form {
     display: flex;
     flex-direction: column;
+    gap: $base;
     &_row {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: $base;
+      &_button {
+        background-color: $white;
+        border: 2px solid $secondary;
+        color: $secondary;
+        font-weight: bolder;
+      }
     }
   }
 }

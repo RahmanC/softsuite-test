@@ -1,0 +1,51 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: $gilroy;
+  color: $fontColor;
+  &_label {
+    font-size: $md;
+    text-transform: capitalize;
+  }
+}
+.container {
+  display: flex;
+  align-items: center;
+  gap: $base;
+  padding: 0.2rem $base;
+  border: 1px solid #e5e5e5;
+  &_inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $base;
+    padding: 0.1rem;
+    cursor: pointer;
+    width: 50px;
+
+    border-radius: 40px;
+    &_radio {
+      background-color: $white;
+      width: $base;
+      height: $base;
+      border-radius: 100%;
+    }
+
+    &_text {
+      font-size: $md;
+    }
+  }
+  &_active {
+    display: flex;
+    background-color: $secondary;
+  }
+  &_inactive {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: $errorColor;
+  }
+}

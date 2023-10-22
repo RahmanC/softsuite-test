@@ -13,4 +13,22 @@
   font-family: $gilroy;
   padding: $sm $base;
   cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.disabled {
+  background-color: #9fcfb6;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 4px;
+  font-size: $base;
+  font-family: $gilroy;
+  padding: $sm $base;
+  cursor: pointer;
+  outline: none;
+  border: none;
 }

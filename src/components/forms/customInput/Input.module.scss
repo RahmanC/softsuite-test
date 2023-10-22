@@ -11,11 +11,16 @@
     font-size: $md;
     text-transform: capitalize;
   }
-  &_input {
+  &_input,
+  &_radio {
     color: $fontColor;
     font-family: $gilroy;
     padding: $base;
     font-size: $base;
     border: 1px solid #e5e5e5;
+  }
+  &_radio {
+    display: flex;
+    align-items: center;
   }
 }

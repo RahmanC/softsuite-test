@@ -10,7 +10,7 @@ import { ReactComponent as Edit } from "assets/svg/pen.svg";
 import { ReactComponent as Delete } from "assets/svg/bin.svg";
 import ConditionalRender from "components/ConditionalRender";
 import Modal from "components/modal/Modal";
-import CreateElement from "components/forms/CreateElement";
+import CreateElement from "components/forms/createElement/CreateElement";
 
 const paths = [
   { label: "Payroll Management", link: "/" },

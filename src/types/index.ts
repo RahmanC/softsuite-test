@@ -1,4 +1,4 @@
-import { Control, FieldValues } from "react-hook-form";
+import { Control, DeepMap, FieldError, FieldValues } from "react-hook-form";
 import { Column } from "react-table";
 
 export interface SearchProps {
@@ -42,6 +42,9 @@ export interface ButtonProps {
   label?: string;
   icon?: React.ReactNode;
   onClick?: () => void;
+  customClass?: string;
+  disabled?: any;
+  type?: any;
 }
 
 export interface ListProps {
@@ -108,8 +111,15 @@ export interface InputProps<T extends FieldValues> {
   name: any;
   control: Control<T>;
   label: string;
-  type: "text" | "email" | "password" | "select";
+  type: "text" | "date" | "radio" | "select" | "textarea" | "toggle";
   options?: string[];
   multiple?: boolean;
   placeholder?: string;
+  errors?: DeepMap<T, FieldError>;
+}
+
+export interface ToggleProps {
+  data: boolean;
+  handleToggle: any;
+  label?: string;
 }

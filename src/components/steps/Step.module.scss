@@ -1,0 +1,39 @@
+@import "scss/media-query-mixins";
+@import "scss/sass-variables";
+
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &_steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex: 1;
+    &_line {
+      flex: 1;
+      border: 1px solid $secondary;
+    }
+    &_line2 {
+      flex: 1;
+      border: 1px solid #cdcdcd;
+    }
+    &_num,
+    &_num2 {
+      background-color: $secondary;
+      width: 40px;
+      height: 40px;
+      color: $white;
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &_num2 {
+      background-color: $white;
+      color: $secondary;
+      border: 1px solid $secondary;
+    }
+  }
+}
