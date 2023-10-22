@@ -70,3 +70,19 @@ export interface TableDataProps {
   list?: any;
   customText?: string;
 }
+
+export interface DetailsProps {
+  name?: string;
+  classification?: string;
+  category?: string;
+  payrun?: string;
+  description?: string;
+  reporting?: string;
+  startDate?: string;
+  endDate?: string;
+  type?: string;
+  frequency?: string;
+  months?: string[];
+  prorate?: string;
+  status?: string;
+}

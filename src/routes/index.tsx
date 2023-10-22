@@ -23,6 +23,7 @@ export default function Router() {
           index: true,
         },
         { path: "elements", element: <Elements /> },
+        { path: "elements/:id", element: <ElementDetails /> },
         { path: "*", element: <Page404 /> },
       ],
     },
@@ -30,4 +31,5 @@ export default function Router() {
 }
 
 const Elements = Loadable(lazy(() => import("screens/elements")));
+const ElementDetails = Loadable(lazy(() => import("screens/elementDetails")));
 const Page404 = Loadable(lazy(() => import("screens/Page404")));

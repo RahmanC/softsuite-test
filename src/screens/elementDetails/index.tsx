@@ -8,18 +8,21 @@ import { ListProps } from "types";
 import { ReactComponent as View } from "assets/svg/eye.svg";
 import { ReactComponent as Edit } from "assets/svg/pen.svg";
 import { ReactComponent as Delete } from "assets/svg/bin.svg";
+import { ReactComponent as Back } from "assets/svg/back.svg";
+import Details from "components/Details/Details";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
   { label: "Element Setup" },
-  { label: "Elements" },
+  { label: "Elements", link: "/elements" },
+  { label: "Element Links" },
 ];
 
 const list: ListProps[] = [
   {
     icon: <View />,
     text: "View Element Links",
-    link: "/elements",
+    link: "/element",
   },
   {
     icon: <Edit />,
@@ -33,28 +36,29 @@ const list: ListProps[] = [
   },
 ];
 
-const Elements = () => {
+const ElementDetails = () => {
   return (
     <div className={styles.container}>
       <Breadcrumb paths={paths} />
       <div className={styles.container_inner}>
-        <PageHeader
+        <Back />
+        <Details {...details} />
+        {/* <PageHeader
           header="Elements"
           placeholder="Search for element"
           filter
           buttonLabel="Create Element"
         />
-        <Table columnData={ELEMENT_COLUMN} rowData={data} list={list} />
+        <Table columnData={ELEMENT_COLUMN} rowData={data} list={list} /> */}
       </div>
     </div>
   );
 };
 
-export default Elements;
+export default ElementDetails;
 
 const data = [
   {
-    id: "1",
     name: "allowance",
     category: "Deduction",
     classification: "pre-tax",
@@ -63,7 +67,6 @@ const data = [
     modified: "Samson ",
   },
   {
-    id: "2",
     name: "allowance",
     category: "Deduction",
     classification: "pre-tax",
@@ -72,7 +75,6 @@ const data = [
     modified: "Samson ",
   },
   {
-    id: "3",
     name: "allowance",
     category: "Deduction",
     classification: "pre-tax",
@@ -81,7 +83,6 @@ const data = [
     modified: "Samson ",
   },
   {
-    id: "4",
     name: "allowance",
     category: "Deduction",
     classification: "pre-tax",
@@ -90,7 +91,6 @@ const data = [
     modified: "Samson ",
   },
   {
-    id: "5",
     name: "allowance",
     category: "Deduction",
     classification: "pre-tax",
@@ -99,7 +99,6 @@ const data = [
     modified: "Samson ",
   },
   {
-    id: "6",
     name: "allowance",
     category: "Deduction",
     classification: "pre-tax",
@@ -108,7 +107,6 @@ const data = [
     modified: "Samson ",
   },
   {
-    id: "7",
     name: "allowance",
     category: "Deduction",
     classification: "pre-tax",
@@ -117,3 +115,12 @@ const data = [
     modified: "Samson ",
   },
 ];
+
+const details = {
+  name: "Allowance",
+  classification: "dedeuction",
+  category: "cat",
+  payrun: "dhhd",
+  description: "",
+  months: ["january, February, March, Septemper"],
+};
