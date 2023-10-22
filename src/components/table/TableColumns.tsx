@@ -24,21 +24,21 @@ export const ELEMENT_COLUMN = [
       return (
         <p
           className={`${styles.status} ${
-            value === "inactive" && styles.inactive
+            value !== "Active" && styles.inactive
           }`}
         >
-          {value}
+          {value === "Active" ? "Active" : "Inactive"}
         </p>
       );
     },
   },
   {
     header: "Date & Time Modified",
-    accessor: "date",
+    accessor: "createdAt",
   },
   {
     header: "Modified By",
-    accessor: "modified",
+    accessor: "modifiedBy",
   },
 ];
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Breadcrumb from "components/breadcrumb/Breadcrumb";
 import styles from "./Elements.module.scss";
 import PageHeader from "components/pageHeader/PageHeader";
@@ -11,6 +11,8 @@ import { ReactComponent as Delete } from "assets/svg/bin.svg";
 import ConditionalRender from "components/ConditionalRender";
 import Modal from "components/modal/Modal";
 import CreateElement from "components/forms/createElement/CreateElement";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchElements } from "redux/slices/elements";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
@@ -37,7 +39,14 @@ const list: ListProps[] = [
 ];
 
 const Elements = () => {
+  const dispatch: any = useDispatch();
+  const { elements } = useSelector((state: any) => state.elements);
+
   const [showModal, setShowModal] = useState(false);
+
+  useLayoutEffect(() => {
+    dispatch(FetchElements());
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -52,7 +61,7 @@ const Elements = () => {
         />
         <Table
           columnData={ELEMENT_COLUMN}
-          rowData={data}
+          rowData={elements}
           list={list}
           noRecord="There are no elements to display"
         />
@@ -67,69 +76,3 @@ const Elements = () => {
 };
 
 export default Elements;
-
-const data = [
-  {
-    id: "1",
-    name: "allowance",
-    category: "Deduction",
-    classification: "pre-tax",
-    status: "inactive",
-    date: "14 - 02 - 2022 || 09:30 AM",
-    modified: "Samson ",
-  },
-  {
-    id: "2",
-    name: "allowance",
-    category: "Deduction",
-    classification: "pre-tax",
-    status: "active",
-    date: "14 - 02 - 2022 || 09:30 AM",
-    modified: "Samson ",
-  },
-  {
-    id: "3",
-    name: "allowance",
-    category: "Deduction",
-    classification: "pre-tax",
-    status: "active",
-    date: "14 - 02 - 2022 || 09:30 AM",
-    modified: "Samson ",
-  },
-  {
-    id: "4",
-    name: "allowance",
-    category: "Deduction",
-    classification: "pre-tax",
-    status: "active",
-    date: "14 - 02 - 2022 || 09:30 AM",
-    modified: "Samson ",
-  },
-  {
-    id: "5",
-    name: "allowance",
-    category: "Deduction",
-    classification: "pre-tax",
-    status: "inactive",
-    date: "14 - 02 - 2022 || 09:30 AM",
-    modified: "Samson ",
-  },
-  {
-    id: "6",
-    name: "allowance",
-    category: "Deduction",
-    classification: "pre-tax",
-    status: "active",
-    date: "14 - 02 - 2022 || 09:30 AM",
-    modified: "Samson ",
-  },
-  {
-    id: "7",
-    name: "allowance",
-    category: "Deduction",
-    classification: "pre-tax",
-    status: "active",
-    date: "14 - 02 - 2022 || 09:30 AM",
-    modified: "Samson ",
-  },
-];
