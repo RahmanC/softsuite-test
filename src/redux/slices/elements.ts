@@ -107,7 +107,7 @@ export function CreateElementData(data: {}, action: any) {
     );
 
     const response: any = await createElements(data);
-    console.log("cre", response);
+
     if (response.status === 201) {
       action();
     }

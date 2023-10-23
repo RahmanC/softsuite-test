@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const { isMobile } = useSelector((state: any) => state.utils);
-  console.log("iss", isMobile);
+
   return (
     <div className={styles.container}>
       <MobileHamburger />
