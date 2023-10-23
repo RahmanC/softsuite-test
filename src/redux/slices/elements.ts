@@ -3,7 +3,9 @@ import {
   createElementLinks,
   createElements,
   deleteElementById,
+  deleteElementLinks,
   editElementById,
+  editElementLinks,
   getElementById,
   getElementLinks,
   getElements,
@@ -234,6 +236,61 @@ export function CreateElementLinkData(id: string, data: {}, action: any) {
     const response: any = await createElementLinks(id, data);
 
     if (response.status === 201) {
+      action();
+    }
+
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: false,
+        error: false,
+      })
+    );
+  };
+}
+
+// update element link
+export function UpdateElementLinkData(
+  elementId: string,
+  id: string,
+  data: {},
+  action: any
+) {
+  return async (dispatch: any) => {
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: true,
+        error: false,
+      })
+    );
+
+    const response: any = await editElementLinks(elementId, id, data);
+
+    if (response.status === 200) {
+      action();
+    }
+
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: false,
+        error: false,
+      })
+    );
+  };
+}
+
+// delete element link by id
+export function DeleteElementLink(elementId: string, id: string, action: any) {
+  return async (dispatch: any) => {
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: true,
+        error: false,
+      })
+    );
+
+    const response: any = await deleteElementLinks(elementId, id);
+
+    if (response?.status === 200) {
       action();
     }
 

@@ -10,10 +10,18 @@ import ConditionalRender from "components/ConditionalRender";
 import Modal from "components/modal/Modal";
 import { GoBack } from "components/GoBack";
 import { useDispatch, useSelector } from "react-redux";
-import { FetchElementById, FetchElementLinks } from "redux/slices/elements";
+import {
+  DeleteElementLink,
+  FetchElementById,
+  FetchElementLinks,
+} from "redux/slices/elements";
 import { useStorage } from "hooks/useStorage";
 import ElementLinkDetails from "screens/elementLinkDetails";
 import CreateElementLink from "components/forms/createElementLink/CreateElementLink";
+import DeleteModal from "components/modal/Delete";
+import Confirmation from "components/modal/Confirmation";
+import { ReactComponent as Check } from "assets/svg/check.svg";
+import EditElementLink from "components/forms/editElementLink/EditElementLink";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
@@ -30,6 +38,9 @@ const ElementDetails = () => {
     (state: any) => state.elements
   );
 
+  const [editModal, setEditModal] = useState(null);
+  const [deleteModal, setDeleteModal] = useState(null);
+  const [successModal, setSuccessModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showDetails, setShowDetails] = useState(null);
 
@@ -37,6 +48,20 @@ const ElementDetails = () => {
     dispatch(FetchElementById(getSessionStorage.id));
     dispatch(FetchElementLinks(getSessionStorage.id));
   }, []);
+
+  const handleDelete = (data: any) => {
+    dispatch(
+      DeleteElementLink(getSessionStorage.id, data.id, () => {
+        setDeleteModal(null);
+        setSuccessModal(true);
+      })
+    );
+  };
+
+  const handleSuccess = () => {
+    setSuccessModal(false);
+    dispatch(FetchElementLinks(getSessionStorage.id));
+  };
 
   return (
     <div className={styles.container}>
@@ -59,6 +84,8 @@ const ElementDetails = () => {
             setShowDetails(data)
           }
           actions
+          onClickEdit={(data: any) => setEditModal(data)}
+          onClickDelete={(data: any) => setDeleteModal(data)}
           noRecord="There are no element links to display"
         />
 
@@ -80,6 +107,37 @@ const ElementDetails = () => {
             <ElementLinkDetails
               closeModal={() => setShowDetails(null)}
               data={showDetails}
+            />
+          </Modal>
+        </ConditionalRender>
+
+        <ConditionalRender isVisible={editModal}>
+          <Modal onClose={() => setEditModal(null)}>
+            <EditElementLink
+              id={getSessionStorage.id}
+              data={editModal}
+              onClose={() => setEditModal(null)}
+            />
+          </Modal>
+        </ConditionalRender>
+
+        <ConditionalRender isVisible={deleteModal}>
+          <Modal onClose={() => setDeleteModal(null)}>
+            <DeleteModal
+              label="Are you sure you want to 
+delete Element Link?"
+              onCancel={() => setDeleteModal(null)}
+              onClick={() => handleDelete(deleteModal)}
+            />
+          </Modal>
+        </ConditionalRender>
+
+        <ConditionalRender isVisible={successModal}>
+          <Modal onClose={() => setSuccessModal(true)}>
+            <Confirmation
+              icon={<Check />}
+              label="Element link has been deleted successfully"
+              onClick={handleSuccess}
             />
           </Modal>
         </ConditionalRender>

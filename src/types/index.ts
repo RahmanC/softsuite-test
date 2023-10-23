@@ -76,6 +76,8 @@ export interface TableDataProps {
   customText?: string;
   noRecord: string;
   handleDetails?: any;
+  onClickEdit?: any;
+  onClickDelete?: any;
 }
 
 export interface DetailsProps {

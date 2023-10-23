@@ -38,6 +38,25 @@ export const createElementLinks = async (id: string, data: {}) => {
   return respData;
 };
 
+export const editElementLinks = async (
+  elementId: string,
+  id: string,
+  data: {}
+) => {
+  const respData = await putData(
+    `/elements/${elementId}/elementlinks/${id}`,
+    data
+  );
+  return respData;
+};
+
+export const deleteElementLinks = async (elementId: string, id: string) => {
+  const respData = await deleteData(
+    `/elements/${elementId}/elementlinks/${id}`
+  );
+  return respData;
+};
+
 export const getLookups = async () => {
   const respData = await fetchData(`/lookups`);
   return respData;

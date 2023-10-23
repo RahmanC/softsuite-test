@@ -1,0 +1,36 @@
+@import "scss/_media-query-mixins";
+@import "scss/_sass-variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  max-height: 80vh;
+  overflow-y: scroll;
+
+  &_step {
+    min-width: 100%;
+  }
+
+  &_header {
+    color: $primary;
+    font-size: $lg;
+    font-weight: 600;
+  }
+  &_form {
+    display: flex;
+    flex-direction: column;
+    gap: $base;
+    &_row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: $base;
+      &_button {
+        background-color: $white;
+        border: 2px solid $secondary;
+        color: $secondary;
+        font-weight: bolder;
+      }
+    }
+  }
+}

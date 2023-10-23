@@ -19,6 +19,8 @@ const Table = ({
   customText,
   noRecord,
   handleDetails,
+  onClickEdit,
+  onClickDelete,
 }: TableDataProps) => {
   const columns = useMemo(() => columnData, [columnData]);
   const data = useMemo(() => rowData, [rowData]);
@@ -132,7 +134,12 @@ const Table = ({
                     )}
                     {actions && (
                       <td className={styles.container_table_row_icon}>
-                        <Action data={row?.original} customText={customText} />
+                        <Action
+                          onClickDelete={onClickDelete}
+                          onClickEdit={onClickEdit}
+                          data={row?.original}
+                          customText={customText}
+                        />
                       </td>
                     )}
                   </tr>
