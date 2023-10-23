@@ -7,7 +7,7 @@ const PageSize = ({
   itemsPerPage,
   onPageSizeChange,
 }: PageSizeProps) => {
-  const pageSizes = [5, 10, 15];
+  const pageSizes = [5, 10];
 
   const handlePageSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newSize = parseInt(e.target.value, 10);

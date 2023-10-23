@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useLayoutEffect, useState } from "react";
 import Breadcrumb from "components/breadcrumb/Breadcrumb";
 import styles from "./Elements.module.scss";
@@ -12,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FetchElementById, FetchElementLinks } from "redux/slices/elements";
 import { useStorage } from "hooks/useStorage";
 import ElementLinkDetails from "screens/elementLinkDetails";
+import CreateElementLink from "components/forms/createElementLink/CreateElementLink";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
@@ -62,7 +64,10 @@ const ElementDetails = () => {
 
         <ConditionalRender isVisible={showModal}>
           <Modal onClose={() => setShowModal(false)}>
-            <p>test</p>
+            <CreateElementLink
+              id={getSessionStorage.id}
+              onClose={() => setShowModal(false)}
+            />
           </Modal>
         </ConditionalRender>
 

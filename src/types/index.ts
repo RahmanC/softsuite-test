@@ -134,7 +134,7 @@ export interface InputProps<T extends FieldValues> {
   control: Control<T>;
   label: string;
   type: "text" | "date" | "radio" | "select" | "textarea" | "toggle";
-  options?: string[];
+  options?: any[];
   multiple?: boolean;
   placeholder?: string;
   errors?: DeepMap<T, FieldError>;

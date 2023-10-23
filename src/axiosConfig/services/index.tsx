@@ -33,6 +33,11 @@ export const getElementLinks = async (id: string) => {
   return respData;
 };
 
+export const createElementLinks = async (id: string, data: {}) => {
+  const respData = await postData(`/elements/${id}/elementlinks`, data);
+  return respData;
+};
+
 export const getLookups = async () => {
   const respData = await fetchData(`/lookups`);
   return respData;
@@ -50,5 +55,47 @@ export const getLookupValues = async (id: string) => {
 
 export const getLookupValueById = async (lookupId: string, id: string) => {
   const respData = await fetchData(`/lookups/${lookupId}/lookupvalues/${id}`);
+  return respData;
+};
+
+export const getSuborganization = async () => {
+  const respData = await fetchData(`/suborganizations`);
+  return respData;
+};
+
+export const getSuborganizationById = async (id: string) => {
+  const respData = await fetchData(`/suborganizations/${id}`);
+  return respData;
+};
+
+export const getDepartments = async (id: string) => {
+  const respData = await fetchData(`/suborganizations/${id}/departments`);
+  return respData;
+};
+
+export const getDepartmentById = async (subId: string, id: string) => {
+  const respData = await fetchData(
+    `/suborganizations/${subId}/departments/${id}`
+  );
+  return respData;
+};
+
+export const getGrades = async () => {
+  const respData = await fetchData(`/grade`);
+  return respData;
+};
+
+export const getGradeById = async (id: string) => {
+  const respData = await fetchData(`/grade/${id}`);
+  return respData;
+};
+
+export const getGradeSteps = async (id: string) => {
+  const respData = await fetchData(`/grade/${id}/gradesteps`);
+  return respData;
+};
+
+export const getGradeStepById = async (gradeId: string, id: string) => {
+  const respData = await fetchData(`/grade/${gradeId}/gradesteps/${id}`);
   return respData;
 };

@@ -40,7 +40,7 @@ const CustomInput = <T extends FieldValues>({
                 defaultValue={inputInitialValue}
                 {...register(field.name, {
                   required: true,
-                  pattern: /^[A-Za-z]+$/i,
+                  pattern: /^[A-Za-z0-9]+$/i,
                 })}
               />
             )}
@@ -120,8 +120,8 @@ const CustomInput = <T extends FieldValues>({
               >
                 <option value="">{placeholder}</option>
                 {options?.map((option: any, index: number) => (
-                  <option key={index} value={+option.id}>
-                    {option.description}
+                  <option key={index} value={option.id}>
+                    {option?.name}
                   </option>
                 ))}
               </select>

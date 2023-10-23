@@ -48,6 +48,7 @@ const Step2 = ({ onSubmit, loading, handleBack }: any) => {
     const dataToSubmit = {
       status: status ? "Active" : "Inactive",
       selectedMonths: selectedOptions.map((m) => m.value),
+      modifiedBy: "Abdulrahman Afaraetu",
       ...formData,
     };
 

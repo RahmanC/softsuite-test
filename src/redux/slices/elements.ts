@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  createElementLinks,
   createElements,
   deleteElementById,
   editElementById,
@@ -210,6 +211,31 @@ export function FetchElementLinks(id: string) {
         elementLinks: response?.data?.content,
       })
     );
+
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: false,
+        error: false,
+      })
+    );
+  };
+}
+
+// create element link
+export function CreateElementLinkData(id: string, data: {}, action: any) {
+  return async (dispatch: any) => {
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: true,
+        error: false,
+      })
+    );
+
+    const response: any = await createElementLinks(id, data);
+
+    if (response.status === 201) {
+      action();
+    }
 
     dispatch(
       slice.actions.updateIsLoading({

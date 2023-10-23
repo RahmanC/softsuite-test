@@ -13,10 +13,12 @@
     flex: 1;
     &_line {
       flex: 1;
+      min-width: 10vw;
       border: 1px solid $secondary;
     }
     &_line2 {
       flex: 1;
+      min-width: 10vw;
       border: 1px solid #cdcdcd;
     }
     &_num,
