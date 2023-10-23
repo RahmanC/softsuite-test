@@ -7,6 +7,9 @@
   align-items: center;
   gap: $xxlg;
   margin-right: $base;
+  @include sm {
+    gap: $base;
+  }
 
   &_account {
     display: flex;
@@ -21,11 +24,17 @@
       font-size: $lg;
       color: $primary;
       font-weight: 600;
+      @include sm {
+        font-size: $base;
+      }
 
       &_title {
         font-size: $base;
         color: $fontColor;
         font-weight: 400;
+        @include sm {
+          font-size: $md;
+        }
       }
     }
   }

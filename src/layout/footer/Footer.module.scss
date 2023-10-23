@@ -10,4 +10,8 @@
   color: $white;
   font-family: $gilroy;
   z-index: 250;
+  @include sm {
+    padding: $xs;
+    font-size: $sm;
+  }
 }

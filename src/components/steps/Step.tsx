@@ -21,7 +21,7 @@ const Steps = ({ options, active }: any) => {
                 : styles.container_steps_num2
             }
           >
-            {n.id === 1 && active !== 1 ? <Check /> : n.id}
+            {active > n.id ? <Check /> : n.id}
           </span>
           {index === options.length - 1 && (
             <span

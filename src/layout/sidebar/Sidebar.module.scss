@@ -9,7 +9,7 @@
   min-width: 18vw;
   padding: 0 $lg;
   overflow-y: scroll;
-  max-height: 80vh;
+  max-height: 90%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   &_menu {
     padding: $xlg 0;
@@ -25,19 +25,20 @@
     display: none;
   }
   @include lg {
-    min-height: 80vh;
+    min-height: 90%;
   }
 }
 
 .show_sidebar {
   display: flex;
+  flex: 1;
   flex-direction: column;
   background: $white;
   min-width: 60%;
   padding: 0 $lg;
   overflow-y: scroll;
-  max-height: 80vh;
-  min-height: 80vh;
+  max-height: 90%;
+  min-height: 90%;
   z-index: 250;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
