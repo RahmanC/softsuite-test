@@ -13,6 +13,12 @@
 
   &_logo {
     cursor: pointer;
+    @include sm {
+      display: none;
+    }
+    @include md {
+      display: none;
+    }
   }
 
   &_column2 {
@@ -21,6 +27,14 @@
     gap: $xxlg;
     &_switch {
       background-color: $bgColor;
+    }
+    &_search {
+      @include md {
+        display: none;
+      }
+    }
+    @include sm {
+      display: none;
     }
   }
 }
