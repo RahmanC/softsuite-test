@@ -57,9 +57,9 @@ const Table = ({
           {headerGroups?.map((headerGroup: any) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers?.map((column: any) => (
-                <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                <th {...column?.getHeaderProps(column?.getSortByToggleProps())}>
                   <div className={styles.container_table_head_th}>
-                    <div>{column.render("header")}</div>
+                    <div>{column?.render("header")}</div>
                     <span>
                       <Sort />
                     </span>
@@ -82,12 +82,12 @@ const Table = ({
           {loading ? (
             <tr>
               <td colSpan={columns.length}>
-                <span>Loading...</span>
+                <span style={{ textAlign: "center" }}>Loading...</span>
               </td>
             </tr>
           ) : rows?.length < 1 ? (
             <tr>
-              <td colSpan={columns.length}>
+              <td colSpan={columns?.length}>
                 <NoData noRecord={noRecord} />
               </td>
             </tr>

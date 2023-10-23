@@ -12,7 +12,10 @@ import ConditionalRender from "components/ConditionalRender";
 import Modal from "components/modal/Modal";
 import CreateElement from "components/forms/createElement/CreateElement";
 import { useDispatch, useSelector } from "react-redux";
-import { FetchElements } from "redux/slices/elements";
+import { DeleteElement, FetchElements } from "redux/slices/elements";
+import DeleteModal from "components/modal/Delete";
+import Confirmation from "components/modal/Confirmation";
+import { ReactComponent as Check } from "assets/svg/check.svg";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
@@ -20,33 +23,50 @@ const paths = [
   { label: "Elements" },
 ];
 
-const list: ListProps[] = [
-  {
-    icon: <View />,
-    text: "View Element Links",
-    link: "/elements",
-  },
-  {
-    icon: <Edit />,
-    text: "Edit Element",
-    link: "/element",
-  },
-  {
-    icon: <Delete />,
-    text: "Delete Element",
-    link: "/element",
-  },
-];
-
 const Elements = () => {
   const dispatch: any = useDispatch();
-  const { elements } = useSelector((state: any) => state.elements);
+  const { elements, isLoading } = useSelector((state: any) => state.elements);
 
+  const [deleteModal, setDeleteModal] = useState(null);
+  const [successModal, setSuccessModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  console.log(deleteModal, "dele");
 
   useLayoutEffect(() => {
     dispatch(FetchElements());
-  }, []);
+  }, [dispatch]);
+
+  const list: ListProps[] = [
+    {
+      icon: <View />,
+      text: "View Element Links",
+      link: "/elements",
+    },
+    {
+      icon: <Edit />,
+      text: "Edit Element",
+      link: "/element",
+    },
+    {
+      icon: <Delete />,
+      text: "Delete Element",
+      onClickModal: (data: any) => setDeleteModal(data),
+    },
+  ];
+
+  const handleDelete = (data: any) => {
+    dispatch(
+      DeleteElement(data.id, () => {
+        setDeleteModal(null);
+        setSuccessModal(true);
+      })
+    );
+  };
+
+  const handleSuccess = () => {
+    setSuccessModal(false);
+  };
 
   return (
     <div className={styles.container}>
@@ -62,12 +82,34 @@ const Elements = () => {
         <Table
           columnData={ELEMENT_COLUMN}
           rowData={elements}
+          loading={isLoading}
           list={list}
           noRecord="There are no elements to display"
         />
         <ConditionalRender isVisible={showModal}>
           <Modal onClose={() => setShowModal(false)}>
             <CreateElement />
+          </Modal>
+        </ConditionalRender>
+
+        <ConditionalRender isVisible={deleteModal}>
+          <Modal onClose={() => setDeleteModal(null)}>
+            <DeleteModal
+              label="Are you sure you want to 
+delete Element?"
+              onCancel={() => setDeleteModal(null)}
+              onClick={() => handleDelete(deleteModal)}
+            />
+          </Modal>
+        </ConditionalRender>
+
+        <ConditionalRender isVisible={successModal}>
+          <Modal onClose={() => setSuccessModal(true)}>
+            <Confirmation
+              icon={<Check />}
+              label="Element has been deleted successfully"
+              onClick={handleSuccess}
+            />
           </Modal>
         </ConditionalRender>
       </div>

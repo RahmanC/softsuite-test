@@ -11,9 +11,15 @@ const CustomInput = <T extends FieldValues>({
   options,
   multiple,
   placeholder,
+  initialValue,
+  defaultValue,
   errors,
+  register,
 }: InputProps<T>) => {
-  const isInvalid = errors && errors[name] !== undefined;
+  const isInvalid = errors && errors.name?.type === "required";
+
+  const inputInitialValue =
+    defaultValue !== undefined ? defaultValue : initialValue || "";
 
   switch (type) {
     case "text":
@@ -31,6 +37,11 @@ const CustomInput = <T extends FieldValues>({
                 placeholder={placeholder}
                 {...field}
                 type="text"
+                defaultValue={inputInitialValue}
+                {...register(field.name, {
+                  required: true,
+                  pattern: /^[A-Za-z]+$/i,
+                })}
               />
             )}
           />
@@ -55,6 +66,7 @@ const CustomInput = <T extends FieldValues>({
                   isInvalid ? styles.invalid : ""
                 }`}
                 placeholder={placeholder}
+                defaultValue={inputInitialValue}
               />
             )}
           />
@@ -80,6 +92,7 @@ const CustomInput = <T extends FieldValues>({
                   isInvalid ? styles.invalid : ""
                 }`}
                 placeholder={placeholder}
+                defaultValue={inputInitialValue}
               />
             )}
           />
@@ -103,10 +116,12 @@ const CustomInput = <T extends FieldValues>({
                 className={`${styles.container_input} ${
                   isInvalid ? styles.invalid : ""
                 }`}
+                defaultValue={inputInitialValue}
               >
-                {options?.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
+                <option value="">{placeholder}</option>
+                {options?.map((option: any, index: number) => (
+                  <option key={index} value={+option.id}>
+                    {option.description}
                   </option>
                 ))}
               </select>
@@ -139,6 +154,7 @@ const CustomInput = <T extends FieldValues>({
                         type="radio"
                         {...field}
                         value={option}
+                        // checked={inputInitialValue === option}
                         className={styles.container_inputRadio}
                       />
                       {option}

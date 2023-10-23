@@ -24,7 +24,7 @@ const ElementDetails = () => {
   const { getSessionStorage } = useStorage("__softSuite");
 
   const dispatch: any = useDispatch();
-  const { singleElement, elementLinks } = useSelector(
+  const { singleElement, elementLinks, isLoading } = useSelector(
     (state: any) => state.elements
   );
 
@@ -52,6 +52,7 @@ const ElementDetails = () => {
         <Table
           columnData={ELEMENT_DETAILS_COLUMN}
           rowData={elementLinks}
+          loading={isLoading}
           handleDetails={(data: React.SetStateAction<null>) =>
             setShowDetails(data)
           }

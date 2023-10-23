@@ -5,19 +5,32 @@ import styles from "./Form.module.scss";
 import Button from "components/button/Button";
 import MultiSelect from "../customInput/MultiSelect";
 import ToggleButton from "components/customToggle/Toggle";
+import ConditionalRender from "components/ConditionalRender";
 
 const months = [
   { value: "January", label: "January" },
   { value: "February", label: "February" },
   { value: "March", label: "March" },
+  { value: "April", label: "April" },
+  { value: "May", label: "May" },
+  { value: "June", label: "June" },
+  { value: "July", label: "July" },
+  { value: "August", label: "August" },
+  { value: "Septempber", label: "Septempber" },
+  { value: "October", label: "October" },
+  { value: "November", label: "November" },
+  { value: "December", label: "December" },
 ];
 
-const Step2 = ({ onSubmit }: any) => {
+const Step2 = ({ onSubmit, loading, handleBack }: any) => {
   const {
     control,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm();
+
+  const selectedFrequency = watch("payFrequency");
 
   const [status, setStatus] = useState(false);
 
@@ -31,12 +44,25 @@ const Step2 = ({ onSubmit }: any) => {
     setSelectedOptions(selectedOptions);
   };
 
+  const handleFormSubmit = (formData: any) => {
+    const dataToSubmit = {
+      status: status ? "Active" : "Inactive",
+      selectedMonths: selectedOptions.map((m) => m.value),
+      ...formData,
+    };
+
+    onSubmit(dataToSubmit);
+  };
+
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.container_form}>
+      <form
+        onSubmit={handleSubmit(handleFormSubmit)}
+        className={styles.container_form}
+      >
         <div className={styles.container_form_row}>
           <CustomInput
-            name="startDate"
+            name="effectiveStartDate"
             control={control}
             label="Effective start date"
             type="date"
@@ -44,7 +70,7 @@ const Step2 = ({ onSubmit }: any) => {
             errors={errors}
           />
           <CustomInput
-            name="endDate"
+            name="effectiveEndDate"
             control={control}
             label="Effective end date"
             type="date"
@@ -54,7 +80,7 @@ const Step2 = ({ onSubmit }: any) => {
         </div>
         <div className={styles.container_form_row}>
           <CustomInput
-            name="type"
+            name="processingType"
             control={control}
             label="processing type"
             type="radio"
@@ -62,7 +88,7 @@ const Step2 = ({ onSubmit }: any) => {
             errors={errors}
           />
           <CustomInput
-            name="frequency"
+            name="payFrequency"
             control={control}
             label="pay frequency"
             type="radio"
@@ -70,13 +96,14 @@ const Step2 = ({ onSubmit }: any) => {
             errors={errors}
           />
         </div>
-
-        <MultiSelect
-          label="selected pay months"
-          placeholder="Select"
-          options={months}
-          onChange={handleSelectChange}
-        />
+        <ConditionalRender isVisible={selectedFrequency === "Selected Months"}>
+          <MultiSelect
+            label="selected pay months"
+            placeholder="Select Months"
+            options={months}
+            onChange={handleSelectChange}
+          />
+        </ConditionalRender>
         <div className={styles.container_form_row}>
           <CustomInput
             name="prorate"
@@ -94,10 +121,11 @@ const Step2 = ({ onSubmit }: any) => {
         </div>
         <div className={styles.container_form_row}>
           <Button
-            label="Cancel"
+            label="Back"
+            onClick={handleBack}
             customClass={styles.container_form_row_button}
           />
-          <Button type="submit" label="Create New Element" />
+          <Button disabled={loading} type="submit" label="Create New Element" />
         </div>
       </form>
     </div>

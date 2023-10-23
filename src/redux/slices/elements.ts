@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  createElements,
+  deleteElementById,
   getElementById,
   getElementLinks,
   getElements,
@@ -7,6 +9,7 @@ import {
 
 const initialState = {
   elements: [],
+  createElement: {},
   singleElement: {},
   elementLinks: [],
   isLoading: false,
@@ -23,6 +26,9 @@ const slice = createSlice({
     },
     updateElements(state, action) {
       state.elements = action.payload.elements;
+    },
+    updateCreateElement(state, action) {
+      state.createElement = action.payload.createElement;
     },
     updateSingleElement(state, action) {
       state.singleElement = action.payload.singleElement;
@@ -48,9 +54,55 @@ export function FetchElements() {
     const response = await getElements();
     dispatch(
       slice.actions.updateElements({
-        elements: response.data.content,
+        elements: response?.data?.content,
       })
     );
+
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: false,
+        error: false,
+      })
+    );
+  };
+}
+
+// capture element data
+export function CaptureElementData(data: {}) {
+  return async (dispatch: any) => {
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: true,
+        error: false,
+      })
+    );
+
+    dispatch(
+      slice.actions.updateCreateElement({
+        createElement: data,
+      })
+    );
+
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: false,
+        error: false,
+      })
+    );
+  };
+}
+
+// create element
+export function CreateElementData(data: {}) {
+  return async (dispatch: any) => {
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: true,
+        error: false,
+      })
+    );
+
+    await createElements(data);
 
     dispatch(
       slice.actions.updateIsLoading({
@@ -87,6 +139,31 @@ export function FetchElementById(id: string) {
   };
 }
 
+// delete element by id
+export function DeleteElement(id: string, action: any) {
+  return async (dispatch: any) => {
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: true,
+        error: false,
+      })
+    );
+
+    const response: any = await deleteElementById(id);
+
+    if (response?.status === 200) {
+      action();
+    }
+
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: false,
+        error: false,
+      })
+    );
+  };
+}
+
 // fetch element links
 export function FetchElementLinks(id: string) {
   return async (dispatch: any) => {
@@ -100,7 +177,7 @@ export function FetchElementLinks(id: string) {
     const response = await getElementLinks(id);
     dispatch(
       slice.actions.updateElementLinks({
-        elementLinks: response.data.content,
+        elementLinks: response?.data?.content,
       })
     );
 

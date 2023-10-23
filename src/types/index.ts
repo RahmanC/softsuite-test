@@ -138,10 +138,24 @@ export interface InputProps<T extends FieldValues> {
   multiple?: boolean;
   placeholder?: string;
   errors?: DeepMap<T, FieldError>;
+  initialValue?: any;
+  defaultValue?: any;
+  register?: any;
 }
 
 export interface ToggleProps {
   data: boolean;
   handleToggle: any;
   label?: string;
+}
+
+export interface DeleteProps {
+  label: string;
+  onCancel?: () => void;
+  onClick: () => void;
+}
+export interface ConfirmProps {
+  label: string;
+  icon: React.ReactNode;
+  onClick: () => void;
 }

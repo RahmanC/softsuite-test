@@ -6,7 +6,7 @@
   height: 100%;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 5;
+  z-index: 251;
   top: 0;
   left: 0;
   bottom: 0;
@@ -23,5 +23,54 @@
     border-radius: 4px;
     padding: 1rem;
     position: relative;
+  }
+}
+
+.delete {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $base;
+  align-items: center;
+  padding: $base;
+  width: 30vw;
+  font-family: $gilroy;
+  text-align: center;
+  &_label {
+    font-size: $lg;
+    font-weight: bold;
+  }
+  &_warn {
+    font-size: $md;
+  }
+  &_buttons {
+    display: flex;
+    align-items: center;
+    gap: $base;
+    &_cancel {
+      background-color: $white;
+      border: 1px solid #c8c8c8;
+      color: #c8c8c8;
+    }
+    &_click {
+      background-color: $errorColor;
+      color: $white;
+    }
+  }
+}
+
+.confirm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $base;
+  align-items: center;
+  padding: $base;
+  width: 30vw;
+  font-family: $gilroy;
+  text-align: center;
+  &_label {
+    font-size: $lg;
+    font-weight: bold;
   }
 }
