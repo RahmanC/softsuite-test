@@ -12,11 +12,18 @@ import { ReactComponent as Account } from "assets/svg/user.svg";
 import { ReactComponent as Logout } from "assets/svg/Logout.svg";
 import NavLink from "components/NavLink/NavLink";
 import NavLinkCategory from "components/NavLinkCategory/NavLinkCategory";
+import { useSelector } from "react-redux";
 
 const links = [{ text: "Elements" }, { text: "Balances" }];
 const Sidebar = () => {
+  const { showHamburger, isMobile } = useSelector((state: any) => state.utils);
+
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${
+        isMobile && showHamburger ? styles.show_sidebar : ""
+      }`}
+    >
       <CustomSwitcher
         icon={<Switch />}
         label="Switch Module"

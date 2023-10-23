@@ -11,8 +11,17 @@
     flex: 1;
     &_outlet {
       max-height: 77vh;
-      width: 100%;
+      margin-left: 21vw;
+      width: calc(100% - 21vw);
       overflow-y: scroll;
+      @include sm {
+        width: 100%;
+        margin-left: 0;
+      }
+      @include md {
+        width: 100%;
+        margin-left: 0;
+      }
     }
   }
 }

@@ -4,6 +4,9 @@
 .container {
   padding: $base $xxlg;
   flex: 1;
+  @include sm {
+    padding: $sm;
+  }
   &_inner {
     background-color: $white;
     border-radius: 6px;

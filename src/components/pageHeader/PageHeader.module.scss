@@ -15,11 +15,18 @@
     align-items: center;
     background-color: $bgColor;
     padding: $md;
-
+    @include sm {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: $md;
+    }
     &_search {
       display: flex;
       align-items: center;
       gap: $sm;
+      @include sm {
+        max-width: calc(100vw - 2.5rem);
+      }
       &_input {
         padding: $sm;
       }

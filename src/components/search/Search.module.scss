@@ -9,6 +9,9 @@
   overflow: hidden;
   background-color: $white;
   font-size: $base;
+  @include sm {
+    width: calc(100vw - 10.5rem);
+  }
   &_input {
     border: none;
     outline: none;

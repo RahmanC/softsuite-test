@@ -7,7 +7,9 @@
   width: 50vw;
   max-height: 80vh;
   overflow-y: scroll;
-
+  @include sm {
+    width: 100%;
+  }
   &_step {
     min-width: 100%;
   }
@@ -25,6 +27,9 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: $base;
+      @include sm {
+        grid-template-columns: repeat(1, 1fr);
+      }
       &_button {
         background-color: $white;
         border: 2px solid $secondary;

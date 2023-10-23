@@ -6,7 +6,9 @@ const ElementLinkDetails = ({ closeModal, data }: any) => {
   return (
     <div className={styles.container}>
       <div className={styles.container_inner}>
-        <Close onClick={closeModal} />
+        <div onClick={closeModal} className={styles.container_inner_close}>
+          <Close />
+        </div>
         <LinkDetails {...data} />
       </div>
     </div>

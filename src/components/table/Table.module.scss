@@ -3,6 +3,8 @@
 
 .container {
   margin-top: $base;
+  max-width: calc(100vw - 1rem);
+  overflow-x: auto;
   &_table {
     min-width: 100%;
     text-align: left;

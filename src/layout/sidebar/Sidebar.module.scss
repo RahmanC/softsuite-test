@@ -2,6 +2,8 @@
 @import "scss/_sass-variables.scss";
 
 .container {
+  // display: none;
+  position: fixed;
   background: $white;
   max-width: 21vw;
   min-width: 18vw;
@@ -16,4 +18,26 @@
       margin: 40px 0;
     }
   }
+  @include sm {
+    display: none;
+  }
+  @include md {
+    display: none;
+  }
+  @include lg {
+    min-height: 80vh;
+  }
+}
+
+.show_sidebar {
+  display: flex;
+  flex-direction: column;
+  background: $white;
+  min-width: 60%;
+  padding: 0 $lg;
+  overflow-y: scroll;
+  max-height: 80vh;
+  min-height: 80vh;
+  z-index: 250;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }

@@ -17,6 +17,12 @@
         color: $fontColor;
         font-weight: 600;
         font-size: $base;
+        @include sm {
+          font-size: $sm;
+        }
+        @include md {
+          font-size: $md;
+        }
       }
       &_lastLink {
         color: $primary;
