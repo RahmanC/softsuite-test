@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   createElements,
   deleteElementById,
+  editElementById,
   getElementById,
   getElementLinks,
   getElements,
@@ -93,7 +94,7 @@ export function CaptureElementData(data: {}) {
 }
 
 // create element
-export function CreateElementData(data: {}) {
+export function CreateElementData(data: {}, action: any) {
   return async (dispatch: any) => {
     dispatch(
       slice.actions.updateIsLoading({
@@ -102,7 +103,36 @@ export function CreateElementData(data: {}) {
       })
     );
 
-    await createElements(data);
+    const response: any = await createElements(data);
+    console.log("cre", response);
+    if (response.status === 201) {
+      action();
+    }
+
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: false,
+        error: false,
+      })
+    );
+  };
+}
+
+// update element
+export function UpdateElementData(id: string, data: {}, action: any) {
+  return async (dispatch: any) => {
+    dispatch(
+      slice.actions.updateIsLoading({
+        isLoading: true,
+        error: false,
+      })
+    );
+
+    const response: any = await editElementById(id, data);
+
+    if (response.status === 200) {
+      action();
+    }
 
     dispatch(
       slice.actions.updateIsLoading({

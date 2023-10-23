@@ -16,6 +16,7 @@ import { DeleteElement, FetchElements } from "redux/slices/elements";
 import DeleteModal from "components/modal/Delete";
 import Confirmation from "components/modal/Confirmation";
 import { ReactComponent as Check } from "assets/svg/check.svg";
+import EditElement from "components/forms/editElement/EditElement";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
@@ -27,11 +28,10 @@ const Elements = () => {
   const dispatch: any = useDispatch();
   const { elements, isLoading } = useSelector((state: any) => state.elements);
 
+  const [editModal, setEditModal] = useState(null);
   const [deleteModal, setDeleteModal] = useState(null);
   const [successModal, setSuccessModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
-  console.log(deleteModal, "dele");
 
   useLayoutEffect(() => {
     dispatch(FetchElements());
@@ -46,7 +46,7 @@ const Elements = () => {
     {
       icon: <Edit />,
       text: "Edit Element",
-      link: "/element",
+      onClickModal: (data: any) => setEditModal(data),
     },
     {
       icon: <Delete />,
@@ -66,6 +66,7 @@ const Elements = () => {
 
   const handleSuccess = () => {
     setSuccessModal(false);
+    dispatch(FetchElements());
   };
 
   return (
@@ -88,7 +89,13 @@ const Elements = () => {
         />
         <ConditionalRender isVisible={showModal}>
           <Modal onClose={() => setShowModal(false)}>
-            <CreateElement />
+            <CreateElement onClose={() => setShowModal(false)} />
+          </Modal>
+        </ConditionalRender>
+
+        <ConditionalRender isVisible={editModal}>
+          <Modal onClose={() => setEditModal(null)}>
+            <EditElement data={editModal} onClose={() => setEditModal(null)} />
           </Modal>
         </ConditionalRender>
 

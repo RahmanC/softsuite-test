@@ -6,8 +6,8 @@ import Step2 from "./Step2";
 import { useDispatch, useSelector } from "react-redux";
 import {
   CaptureElementData,
-  CreateElementData,
   FetchElements,
+  UpdateElementData,
 } from "redux/slices/elements";
 import ConditionalRender from "components/ConditionalRender";
 import Modal from "components/modal/Modal";
@@ -27,13 +27,16 @@ const options = [
 
 interface Props {
   onClose: () => void;
+  data: any;
 }
 
-const CreateElement = ({ onClose }: Props) => {
+const EditElement = ({ onClose, data }: Props) => {
   const dispatch: any = useDispatch();
   const { isLoading, createElement } = useSelector(
     (state: any) => state.elements
   );
+
+  let id: string = data.id;
 
   const [successModal, setSuccessModal] = useState(false);
   const [active, setActive] = useState(1);
@@ -46,7 +49,7 @@ const CreateElement = ({ onClose }: Props) => {
   const submitData = (data: any) => {
     let apiData = { ...createElement, ...data };
     dispatch(
-      CreateElementData(apiData, () => {
+      UpdateElementData(id, apiData, () => {
         setSuccessModal(true);
       })
     );
@@ -60,7 +63,7 @@ const CreateElement = ({ onClose }: Props) => {
 
   return (
     <div className={styles.container}>
-      <p className={styles.container_header}>Create Element</p>
+      <p className={styles.container_header}>Edit Element</p>
       <div className={styles.container_step}>
         <Steps options={options} active={active} />
       </div>
@@ -69,7 +72,7 @@ const CreateElement = ({ onClose }: Props) => {
         <Step1
           formData={onSubmit}
           loading={isLoading}
-          data={createElement}
+          data={data}
           closeModal={onClose}
         />
       )}
@@ -77,6 +80,7 @@ const CreateElement = ({ onClose }: Props) => {
         <Step2
           onSubmit={submitData}
           loading={isLoading}
+          data={data}
           handleBack={() => setActive(1)}
         />
       )}
@@ -84,7 +88,7 @@ const CreateElement = ({ onClose }: Props) => {
         <Modal onClose={() => setSuccessModal(true)}>
           <Confirmation
             icon={<Check />}
-            label="Element has been created successfully"
+            label="Element has been updated successfully"
             onClick={handleSuccess}
           />
         </Modal>
@@ -93,4 +97,4 @@ const CreateElement = ({ onClose }: Props) => {
   );
 };
 
-export default CreateElement;
+export default EditElement;
