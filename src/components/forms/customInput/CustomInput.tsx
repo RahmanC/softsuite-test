@@ -16,7 +16,7 @@ const CustomInput = <T extends FieldValues>({
   errors,
   register,
 }: InputProps<T>) => {
-  const isInvalid = errors && errors.name?.type === "required";
+  const isInvalid = errors[name];
 
   const inputInitialValue =
     defaultValue !== undefined ? defaultValue : initialValue || "";
@@ -38,10 +38,6 @@ const CustomInput = <T extends FieldValues>({
                 {...field}
                 type="text"
                 defaultValue={inputInitialValue}
-                {...register(field.name, {
-                  required: true,
-                  pattern: /^[A-Za-z0-9]+$/i,
-                })}
               />
             )}
           />

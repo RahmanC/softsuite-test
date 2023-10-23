@@ -7,13 +7,16 @@ import Button from "components/button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchLookupValues } from "redux/slices/lookups";
 
+import { yupResolver } from "@hookform/resolvers/yup";
+import { step1Schema } from "hooks/schema";
+
 const Step1 = ({ formData, closeModal, loading, data }: any) => {
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(step1Schema) });
 
   const dispatch: any = useDispatch();
   const { classification, payrun, category } = useSelector(

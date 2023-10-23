@@ -7,6 +7,7 @@ interface MultiSelectProps {
   placeholder?: string;
   options: { value: string; label: string }[];
   onChange: (selectedOptions: { value: string; label: string }[]) => void;
+  error?: string;
 }
 
 const MultiSelect: React.FC<MultiSelectProps> = ({
@@ -14,6 +15,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
   placeholder,
   onChange,
   label,
+  error,
 }) => {
   const handleChange: any = (
     selectedOptions: { value: string; label: string }[]
@@ -29,8 +31,9 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
         options={options}
         onChange={handleChange}
         placeholder={placeholder}
-        // className={`${styles.container_input} `}
+        closeMenuOnSelect={false}
       />
+      {error && <span className={styles.error_message}>{error}</span>}
     </div>
   );
 };

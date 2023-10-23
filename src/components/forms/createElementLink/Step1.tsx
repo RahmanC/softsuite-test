@@ -10,6 +10,8 @@ import {
   FetchLookupValues,
   FetchSuborganization,
 } from "redux/slices/lookups";
+import { step1LinkSchema } from "hooks/schema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const Step1 = ({ formData, closeModal, loading, data }: any) => {
   const {
@@ -18,9 +20,9 @@ const Step1 = ({ formData, closeModal, loading, data }: any) => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm();
+  } = useForm({ resolver: yupResolver(step1LinkSchema) });
 
-  const selectedSubOrg = watch("suborganizationId");
+  const selectedSubOrg: any = watch("suborganizationId");
 
   const dispatch: any = useDispatch();
   const {

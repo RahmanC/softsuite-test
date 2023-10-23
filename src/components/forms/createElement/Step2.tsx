@@ -6,6 +6,8 @@ import Button from "components/button/Button";
 import MultiSelect from "../customInput/MultiSelect";
 import ToggleButton from "components/customToggle/Toggle";
 import ConditionalRender from "components/ConditionalRender";
+import { step2Schema } from "hooks/schema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const months = [
   { value: "January", label: "January" },
@@ -28,7 +30,7 @@ const Step2 = ({ onSubmit, loading, handleBack }: any) => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm();
+  } = useForm({ resolver: yupResolver(step2Schema) });
 
   const selectedFrequency = watch("payFrequency");
 
@@ -103,6 +105,9 @@ const Step2 = ({ onSubmit, loading, handleBack }: any) => {
             placeholder="Select Months"
             options={months}
             onChange={handleSelectChange}
+            // error={
+            //   errors?.selectedMonths ? errors?.selectedMonths.message : undefined
+            // }
           />
         </ConditionalRender>
         <div className={styles.container_form_row}>

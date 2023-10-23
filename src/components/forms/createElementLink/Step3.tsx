@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import styles from "./Form.module.scss";
 import Button from "components/button/Button";
 import ToggleButton from "components/customToggle/Toggle";
+import { step3Schema } from "hooks/schema";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const amountType = [
   { id: "fixed value", name: "Fixed Value" },
@@ -17,7 +19,7 @@ const Step3 = ({ onSubmit, loading, handleBack }: any) => {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm();
+  } = useForm({ resolver: yupResolver(step3Schema) });
 
   const selectedType = watch("amountType");
 

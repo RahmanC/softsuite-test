@@ -1,4 +1,4 @@
-import { Control, DeepMap, FieldError, FieldValues } from "react-hook-form";
+import { Control, FieldValues } from "react-hook-form";
 import { Column } from "react-table";
 
 export interface SearchProps {
@@ -139,7 +139,7 @@ export interface InputProps<T extends FieldValues> {
   options?: any[];
   multiple?: boolean;
   placeholder?: string;
-  errors?: DeepMap<T, FieldError>;
+  errors?: any;
   initialValue?: any;
   defaultValue?: any;
   register?: any;
