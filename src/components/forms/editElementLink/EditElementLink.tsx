@@ -6,7 +6,6 @@ import Step2 from "./Step2";
 import { useDispatch, useSelector } from "react-redux";
 import {
   CaptureElementData,
-  CreateElementLinkData,
   FetchElementLinks,
   UpdateElementLinkData,
 } from "redux/slices/elements";
