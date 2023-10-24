@@ -21,7 +21,6 @@ import DeleteModal from "components/modal/Delete";
 import Confirmation from "components/modal/Confirmation";
 import { ReactComponent as Check } from "assets/svg/check.svg";
 import EditElement from "components/forms/editElement/EditElement";
-import { GetLookups } from "utils/getLookups";
 
 const paths = [
   { label: "Payroll Management", link: "/" },

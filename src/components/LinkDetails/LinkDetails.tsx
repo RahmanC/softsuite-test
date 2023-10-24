@@ -90,7 +90,12 @@ const LinkDetails = ({
           </div>
           <div className={styles.container_box_inner_data}>
             <span>amount</span>
-            <span>{amount ?? "-"}</span>
+            <span>
+              {" "}
+              {Number(amount)?.toLocaleString(undefined, {
+                maximumFractionDigits: 2,
+              }) ?? "-"}
+            </span>
           </div>
         </div>
 
