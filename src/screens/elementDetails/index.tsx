@@ -23,6 +23,7 @@ import DeleteModal from "components/modal/Delete";
 import Confirmation from "components/modal/Confirmation";
 import { ReactComponent as Check } from "assets/svg/check.svg";
 import EditElementLink from "components/forms/editElementLink/EditElementLink";
+import { FetchSuborganization } from "redux/slices/lookups";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
@@ -49,6 +50,7 @@ const ElementDetails = () => {
   useLayoutEffect(() => {
     dispatch(FetchElementById(getSessionStorage.id));
     dispatch(FetchElementLinks(getSessionStorage.id));
+    dispatch(FetchSuborganization());
   }, []);
 
   const handleDelete = (data: any) => {
