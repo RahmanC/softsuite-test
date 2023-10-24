@@ -14,12 +14,14 @@ const CustomInput = <T extends FieldValues>({
   initialValue,
   defaultValue,
   errors,
-  register,
 }: InputProps<T>) => {
   const isInvalid = errors[name];
 
   const inputInitialValue =
     defaultValue !== undefined ? defaultValue : initialValue || "";
+
+  // Ensuring options prop is an array.
+  const optionsArray = Array.isArray(options) ? options : [];
 
   switch (type) {
     case "text":
@@ -108,15 +110,14 @@ const CustomInput = <T extends FieldValues>({
             render={({ field }) => (
               <select
                 {...field}
-                multiple={multiple}
                 className={`${styles.container_input} ${
                   isInvalid ? styles.invalid : ""
                 }`}
                 defaultValue={inputInitialValue}
               >
                 <option value="">{placeholder}</option>
-                {options?.map((option: any, index: number) => (
-                  <option key={index} value={option.id}>
+                {optionsArray?.map((option: any, index: number) => (
+                  <option key={index} value={option?.id}>
                     {option?.name}
                   </option>
                 ))}
@@ -138,12 +139,11 @@ const CustomInput = <T extends FieldValues>({
               isInvalid ? styles.invalid : ""
             }`}
           >
-            {options?.map((option) => (
-              <div key={option}>
+            {optionsArray?.map((option: any, index: number) => (
+              <div key={index}>
                 <Controller
                   name={name}
                   control={control}
-                  // rules={rules}
                   render={({ field }) => (
                     <label>
                       <input

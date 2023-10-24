@@ -75,8 +75,8 @@ const Details = ({
           <div className={styles.container_box_inner_data}>
             <span>pay months</span>
             <span>
-              {selectedMonths?.map((m) => {
-                return <span>{m}</span>;
+              {selectedMonths?.map((m, index) => {
+                return <span key={index}>{m}</span>;
               }) ?? "-"}
             </span>
           </div>

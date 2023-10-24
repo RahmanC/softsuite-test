@@ -41,7 +41,7 @@ const Step1 = ({ formData, closeModal, loading, data }: any) => {
 
   useLayoutEffect(() => {
     dispatch(FetchDepartments(selectedSubOrg));
-  }, [dispatch, selectedSubOrg]);
+  }, [selectedSubOrg]);
 
   return (
     <div>
@@ -54,7 +54,7 @@ const Step1 = ({ formData, closeModal, loading, data }: any) => {
           placeholder="Input Name"
           errors={errors}
           register={register}
-          defaultValue={data.name}
+          defaultValue={data?.name}
         />
         <div className={styles.container_form_row}>
           <CustomInput
@@ -66,7 +66,7 @@ const Step1 = ({ formData, closeModal, loading, data }: any) => {
             register={register}
             options={suborganization}
             placeholder="Select a Suborganization"
-            defaultValue={data.suborganizationId}
+            defaultValue={data.suborganizationId ?? []}
           />
           <CustomInput
             name="departmentId"
@@ -77,7 +77,7 @@ const Step1 = ({ formData, closeModal, loading, data }: any) => {
             register={register}
             options={department}
             placeholder="Select a Department"
-            defaultValue={data.classificationId}
+            defaultValue={data.departmentId ?? []}
           />
         </div>
         <div className={styles.container_form_row}>
@@ -90,7 +90,7 @@ const Step1 = ({ formData, closeModal, loading, data }: any) => {
             placeholder="Select a Job Title"
             errors={errors}
             register={register}
-            defaultValue={data.jobTitleId}
+            defaultValue={data.jobTitleId ?? []}
           />
           <CustomInput
             name="locationId"
@@ -101,7 +101,7 @@ const Step1 = ({ formData, closeModal, loading, data }: any) => {
             placeholder="Select a Location"
             errors={errors}
             register={register}
-            defaultValue={data.payRunId}
+            defaultValue={data.locationId ?? []}
           />
         </div>
         <div className={styles.container_form_row}>
@@ -114,7 +114,7 @@ const Step1 = ({ formData, closeModal, loading, data }: any) => {
             placeholder="Select an Employee Type"
             errors={errors}
             register={register}
-            defaultValue={data.jobTitleId}
+            defaultValue={data.jobTitleId ?? []}
           />
           <CustomInput
             name="employeeCategoryId"
@@ -125,7 +125,7 @@ const Step1 = ({ formData, closeModal, loading, data }: any) => {
             placeholder="Select an Employee Category"
             errors={errors}
             register={register}
-            defaultValue={data.payRunId}
+            defaultValue={data.payRunId ?? []}
           />
         </div>
 

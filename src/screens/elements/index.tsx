@@ -12,7 +12,11 @@ import ConditionalRender from "components/ConditionalRender";
 import Modal from "components/modal/Modal";
 import CreateElement from "components/forms/createElement/CreateElement";
 import { useDispatch, useSelector } from "react-redux";
-import { DeleteElement, FetchElements } from "redux/slices/elements";
+import {
+  CaptureElementData,
+  DeleteElement,
+  FetchElements,
+} from "redux/slices/elements";
 import DeleteModal from "components/modal/Delete";
 import Confirmation from "components/modal/Confirmation";
 import { ReactComponent as Check } from "assets/svg/check.svg";
@@ -69,6 +73,11 @@ const Elements = () => {
     dispatch(FetchElements());
   };
 
+  const handleCloseCreateModal = () => {
+    setShowModal(false);
+    dispatch(CaptureElementData({}));
+  };
+
   return (
     <div className={styles.container}>
       <Breadcrumb paths={paths} />
@@ -88,8 +97,8 @@ const Elements = () => {
           noRecord="There are no elements to display"
         />
         <ConditionalRender isVisible={showModal}>
-          <Modal onClose={() => setShowModal(false)}>
-            <CreateElement onClose={() => setShowModal(false)} />
+          <Modal onClose={handleCloseCreateModal}>
+            <CreateElement onClose={handleCloseCreateModal} />
           </Modal>
         </ConditionalRender>
 

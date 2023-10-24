@@ -11,6 +11,7 @@ import Modal from "components/modal/Modal";
 import { GoBack } from "components/GoBack";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  CaptureElementData,
   DeleteElementLink,
   FetchElementById,
   FetchElementLinks,
@@ -63,6 +64,11 @@ const ElementDetails = () => {
     dispatch(FetchElementLinks(getSessionStorage.id));
   };
 
+  const handleCloseCreateModal = () => {
+    setShowModal(false);
+    dispatch(CaptureElementData({}));
+  };
+
   return (
     <div className={styles.container}>
       <Breadcrumb paths={paths} />
@@ -90,10 +96,10 @@ const ElementDetails = () => {
         />
 
         <ConditionalRender isVisible={showModal}>
-          <Modal onClose={() => setShowModal(false)}>
+          <Modal onClose={handleCloseCreateModal}>
             <CreateElementLink
               id={getSessionStorage.id}
-              onClose={() => setShowModal(false)}
+              onClose={handleCloseCreateModal}
             />
           </Modal>
         </ConditionalRender>
