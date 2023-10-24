@@ -21,6 +21,7 @@ import DeleteModal from "components/modal/Delete";
 import Confirmation from "components/modal/Confirmation";
 import { ReactComponent as Check } from "assets/svg/check.svg";
 import EditElement from "components/forms/editElement/EditElement";
+import { GetLookups } from "utils/getLookups";
 
 const paths = [
   { label: "Payroll Management", link: "/" },
@@ -29,6 +30,7 @@ const paths = [
 ];
 
 const Elements = () => {
+  const column = ELEMENT_COLUMN();
   const dispatch: any = useDispatch();
   const { elements, isLoading } = useSelector((state: any) => state.elements);
 
@@ -90,7 +92,7 @@ const Elements = () => {
           onClick={() => setShowModal(true)}
         />
         <Table
-          columnData={ELEMENT_COLUMN}
+          columnData={column}
           rowData={elements}
           loading={isLoading}
           list={list}

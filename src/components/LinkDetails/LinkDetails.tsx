@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Details.module.scss";
 import { LinkDetailsProps } from "types";
+import { GetLookups } from "utils/getLookups";
 
 const LinkDetails = ({
   name,
@@ -20,6 +21,14 @@ const LinkDetails = ({
   housing,
   status,
 }: LinkDetailsProps) => {
+  const {
+    getSubOrganizationName,
+    getDepartment,
+    getLocationName,
+    getGrade,
+    getGradeStep,
+  } = GetLookups();
+
   return (
     <div className={styles.container}>
       <p className={styles.container_header}>Element Link Details</p>
@@ -31,17 +40,17 @@ const LinkDetails = ({
           </div>
           <div className={styles.container_box_inner_data}>
             <span>sub organization</span>
-            <span>{suborganizationId ?? "-"}</span>
+            <span>{getSubOrganizationName(suborganizationId) ?? "-"}</span>
           </div>
         </div>
         <div className={styles.container_box_inner}>
           <div className={styles.container_box_inner_data}>
             <span>department</span>
-            <span>{departmentId ?? "-"}</span>
+            <span>{getDepartment(departmentId) ?? "-"}</span>
           </div>
           <div className={styles.container_box_inner_data}>
             <span>location</span>
-            <span>{locationId ?? "-"}</span>
+            <span>{getLocationName(locationId) ?? "-"}</span>
           </div>
         </div>
         <div className={styles.container_box_inner}>
@@ -67,11 +76,11 @@ const LinkDetails = ({
         <div className={styles.container_box_inner}>
           <div className={styles.container_box_inner_data}>
             <span>grade</span>
-            <span>{grade ?? "-"}</span>
+            <span>{getGrade(grade) ?? "-"}</span>
           </div>
           <div className={styles.container_box_inner_data}>
             <span>grade step</span>
-            <span>{gradeStep ?? "-"}</span>
+            <span>{getGradeStep(gradeStep) ?? "-"}</span>
           </div>
         </div>
         <div className={styles.container_box_inner}>

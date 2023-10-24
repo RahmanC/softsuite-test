@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Details.module.scss";
 import { DetailsProps } from "types";
+import { GetLookups } from "utils/getLookups";
 
 const Details = ({
   name,
@@ -17,6 +18,9 @@ const Details = ({
   prorate,
   status,
 }: DetailsProps) => {
+  const { getClassificationName, getCategoryName, getPayRunName } =
+    GetLookups();
+
   return (
     <div className={styles.container}>
       <p className={styles.container_header}>Element Details</p>
@@ -28,17 +32,17 @@ const Details = ({
           </div>
           <div className={styles.container_box_inner_data}>
             <span>Element Classification</span>
-            <span>{classificationId ?? "-"}</span>
+            <span>{getClassificationName(classificationId) ?? "-"}</span>
           </div>
         </div>
         <div className={styles.container_box_inner}>
           <div className={styles.container_box_inner_data}>
             <span>Element Category</span>
-            <span>{categoryId ?? "-"}</span>
+            <span>{getCategoryName(categoryId) ?? "-"}</span>
           </div>
           <div className={styles.container_box_inner_data}>
             <span>Payrun</span>
-            <span>{payRunId ?? "-"}</span>
+            <span>{getPayRunName(payRunId) ?? "-"}</span>
           </div>
         </div>
         <div className={styles.container_box_inner}>

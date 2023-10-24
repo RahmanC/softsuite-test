@@ -32,6 +32,7 @@ const paths = [
 ];
 
 const ElementDetails = () => {
+  const column = ELEMENT_DETAILS_COLUMN();
   const { getSessionStorage } = useStorage("__softSuite");
 
   const dispatch: any = useDispatch();
@@ -83,7 +84,7 @@ const ElementDetails = () => {
           onClick={() => setShowModal(true)}
         />
         <Table
-          columnData={ELEMENT_DETAILS_COLUMN}
+          columnData={column}
           rowData={elementLinks}
           loading={isLoading}
           handleDetails={(data: React.SetStateAction<null>) =>
